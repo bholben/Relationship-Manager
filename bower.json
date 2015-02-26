@@ -1,0 +1,11 @@
+{
+  "name": "19-angular-app",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0",
+    
+    
+    "normalize-css": "~3.0.1"
+  }
+}
