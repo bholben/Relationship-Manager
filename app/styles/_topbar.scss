@@ -1,13 +1,82 @@
 
-.header-bar {
+header.topbar {
   position: fixed;
   top: 0;
   width: 100%;
   height: $topBarHeight;
   z-index: $zIndexTopBar;
+  box-shadow: $dropShadow;
   color: white;
   background-color: $cBase1;
-  box-shadow: $dropShadow;
+  &.menu2 {
+    background-color: $cBase2
+  }
+  &.menu3{
+    background-color: $cBase3
+  }
+  i.fa-bars, div.title, i.fa-user {
+    line-height: $topBarHeight;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.85;
+  }
+  i.fa-bars:hover, div.title:hover, i.fa-user:hover {
+    opacity: 1;
+  }
+  // Hamburger icon
+  i.fa-bars {
+    float: left;
+    width: 100px;
+    padding-left: $sidePadding;
+  }
+  // Title
+  div.title {
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  // User menu toggle icon (avatar icon)
+  i.fa-user {
+    float: right;
+    width: 100px;
+    text-align: right;
+    font-size: 30px;
+  }
+  // User menu wrapper
+  nav.user {
+    position: fixed;
+    top: ($topBarHeight - 5px);
+    right: 0;
+    width: 200px;
+    margin: 0 16px;
+    line-height: $menuUserButtonHeight;
+    color: $cGray2;
+    background-color: white;
+    box-shadow: $dropShadow;
+    ul.user-menu {
+      // display: none;
+      overflow: auto;
+      li {
+        height: $menuUserButtonHeight;
+        padding-left: $sidePadding;
+        border-bottom: 1px solid $cGrayC;
+        font-size: 15px;
+        cursor: pointer;
+        &:hover {
+          background-color: $cGrayT;
+        }
+      }
+      &:after {
+        position: absolute;
+        top: -8px;
+        right: 10px;
+        border-bottom: 8px solid #eee;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        content: '';
+      }
+    }
+  }
 }
 
 .header-spacer {
