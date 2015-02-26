@@ -1,0 +1,17 @@
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $topBarHeight;
+  z-index: $zIndexTopBar;
+  color: white;
+  background-color: $cBase1;
+  box-shadow: $dropShadow;
+}
+
+.header-spacer {
+  width: 100%;
+  height: $topBarHeight;
+}
+

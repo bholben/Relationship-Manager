@@ -1,0 +1,72 @@
+
+$minWidthPhone: 0;
+$minWidthPhablet: 600px;
+$minWidthTablet: 768px;
+$minWidthDesktop: 992px;
+$minWidthWide: 1200px;
+
+// Layout - menu horizontal arrangement
+$mainMenuWidth: 260px;
+$sidePadding: 30px;
+$numHeadingTabs: 3;
+$numFooterTabs: 3;
+$menuHeadingWidth: 100% / $numHeadingTabs;
+$navIconWidth: $mainMenuWidth / $numHeadingTabs;
+$menuFooterWidth: 100% / $numFooterTabs;
+
+// Layout - menu vertical arrangement
+$topBarHeight: 55px;
+$menuGroupTabsHeight: 45px;
+$menuGroupTitleHeight: 40px;
+$menuButtonHeight: 50px;
+$menuFooterHeight: 45px;
+$menuItemsTopOffset: $menuGroupTabsHeight + $menuGroupTitleHeight;
+$menuItemsBottomOffset: $topBarHeight + $menuFooterHeight;
+$menuUserButtonHeight: 40px;
+
+$zIndexTopBar: 20;
+// $zIndexMenu: 10;
+
+// Color palette
+$cGrayEC: #ececec;  // default body background, menu active background backup
+$cGrayC: #ccc;      // user menu border, filter border
+$cGrayA: #aaa;      // spinner background backup
+$cGray9: #999;      // body title text
+$cGray7: #777;      // default sidebar text
+$cGray3: #333;      // default body text
+$cGray2: #222;      // menu active darkened text
+$cGrayT: rgba(0, 0, 0, 0.03);  // menu active background highlight
+$cGrayTD: rgba(0, 0, 0, 0.3);  // spinner background
+$cBase1: #4285f4;      // background
+// $cBase1: #1E4EFF;
+$cBase1: #6685F4;
+$cBase1Dark: darken($cBase1, 3%);  // foreground, text
+$cBase2: #5CF67E;      // background
+$cBase2Dark: darken($cBase2, 3%);  // foreground, text
+$cBase3: #0f9d58;      // background
+$cBase3Dark: darken($cBase3, 3%);  // foreground, text
+$dropShadow: 0 0 4px rgba(0,0,0,.14), 2px 4px 8px rgba(0,0,0,.28);
+
+
+/* CSS - Cascading Style Sheet */
+/* Palette color codes */
+/* Palette URL: http://paletton.com/#uid=13Q0u0kl1Wx1x+IcEXDsUWkWEVB */
+
+// .color-primary-0 { color: #6685F4 } /* Main Primary color */
+// .color-primary-1 { color: #F4F6FE }
+// .color-primary-2 { color: #A0B3F6 }
+// .color-primary-3 { color: #315BF3 }
+// .color-primary-4 { color: #0437F1 }
+
+
+/* CSS - Cascading Style Sheet */
+/* Palette color codes */
+/* Palette URL: http://paletton.com/#uid=12T0N0kk3Wk00++aNYyspUjRXI9 */
+
+// .color-primary-0 { color: #5CF67E } /* Main Primary color */
+// .color-primary-1 { color: #FFFFFF }
+// .color-primary-2 { color: #A6FAB9 }
+// .color-primary-3 { color: #1BF24B }
+// .color-primary-4 { color: #00DA30 }
+
+

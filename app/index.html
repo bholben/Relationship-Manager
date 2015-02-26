@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-    <title>19 Angular_App</title>
+    <title>Angular App</title>
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
+    <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -17,18 +18,139 @@
   </head>
   <body>
 
-    <div class="hero-unit">
-      <h1>'Sup</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML Template</li>
-        <li>Normalize CSS</li>
-        <li>Sass</li>
+    <div class="header-bar">
+      <header>
 
-        <li>UnderscoreJS</li>
-      </ul>
-      <p>Don't forget to update your readme file.</p>
+      </header>
     </div>
+
+    <div class="header-spacer"></div>
+
+    <nav class="sidebar">
+
+      <ul class="menus">
+        <li class="menu1"><i class="fa fa-calculator"></i></li>
+        <li class="menu2"><i class="fa fa-book"></i></li>
+        <li class="menu3"><i class="fa fa-gear"></i></li>
+      </ul>
+
+      <div>
+        <div class="menu-title menu1">Transactions</div>
+        <ul class="menu">
+          <li>Enter Bill</li>
+          <li>Pay Bills</li>
+          <li>One-step Payment</li>
+          <li>Import Time Entries</li>
+          <li>Create Invoice</li>
+          <li>Receive Payment</li>
+          <li>Make Deposit</li>
+        </ul>
+      </div>
+
+      <div style="display: none">
+        <div class="menu-title menu2">Reports</div>
+        <ul class="menu">
+          <li>Report1</li>
+          <li>Report2</li>
+          <li>Report3</li>
+          <li>Report4</li>
+          <li>Report5</li>
+          <li>Report6</li>
+          <li>Report7</li>
+          <li>Report8</li>
+      </div>
+
+      <div style="display: none">
+        <div class="menu-title menu3">Reports</div>
+        <ul class="menu">
+          <li>Chart of Accounts</li>
+          <li>Relationships</li>
+          <li>Company Settings</li>
+      </div>
+
+    </nav>
+
+    <div class="page-wrapper">
+      <div class="fonts">
+        <h5>Font Awesome Icons</h5>
+        <div><i class="fa fa-fw fa-area-chart"></i></div>
+        <div><i class="fa fa-fw fa-asterisk"></i></div>
+        <div><i class="fa fa-fw fa-bank"></i></div>
+        <div><i class="fa fa-fw fa-bar-chart"></i></div>
+        <div><i class="fa fa-fw fa-bars"></i></div>
+        <div><i class="fa fa-fw fa-bell"></i></div>
+        <div><i class="fa fa-fw fa-bolt"></i></div>
+        <div><i class="fa fa-fw fa-book"></i></div>
+        <div><i class="fa fa-fw fa-bookmark"></i></div>
+        <div><i class="fa fa-fw fa-briefcase"></i></div>
+        <div><i class="fa fa-fw fa-calendar"></i></div>
+        <div><i class="fa fa-fw fa-certificate"></i></div>
+        <div><i class="fa fa-fw fa-check-square"></i></div>
+        <div><i class="fa fa-fw fa-cloud"></i></div>
+        <div><i class="fa fa-fw fa-close"></i></div>
+        <div><i class="fa fa-fw fa-cog"></i></div>
+        <div><i class="fa fa-fw fa-copyright"></i></div>
+        <div><i class="fa fa-fw fa-credit-card"></i></div>
+        <div><i class="fa fa-fw fa-edit"></i></div>
+        <div><i class="fa fa-fw fa-envelope"></i></div>
+        <div><i class="fa fa-fw fa-fax"></i></div>
+        <div><i class="fa fa-fw fa-file-excel-o"></i></div>
+        <div><i class="fa fa-fw fa-file-pdf-o"></i></div>
+        <div><i class="fa fa-fw fa-file-photo-o"></i></div>
+        <div><i class="fa fa-fw fa-filter"></i></div>
+        <div><i class="fa fa-fw fa-fire-extinguisher"></i></div>
+        <div><i class="fa fa-fw fa-flag"></i></div>
+        <div><i class="fa fa-fw fa-folder"></i></div>
+        <div><i class="fa fa-fw fa-gavel"></i></div>
+        <div><i class="fa fa-fw fa-gift"></i></div>
+        <div><i class="fa fa-fw fa-history"></i></div>
+        <div><i class="fa fa-fw fa-home"></i></div>
+        <div><i class="fa fa-fw fa-inbox"></i></div>
+        <div><i class="fa fa-fw fa-info"></i></div>
+        <div><i class="fa fa-fw fa-institution"></i></div>
+        <div><i class="fa fa-fw fa-leaf"></i></div>
+        <div><i class="fa fa-fw fa-lightbulb-o"></i></div>
+        <div><i class="fa fa-fw fa-line-chart"></i></div>
+        <div><i class="fa fa-fw fa-location-arrow"></i></div>
+        <div><i class="fa fa-fw fa-lock"></i></div>
+        <div><i class="fa fa-fw fa-newspaper-o"></i></div>
+        <div><i class="fa fa-fw fa-pencil"></i></div>
+        <div><i class="fa fa-fw fa-phone"></i></div>
+        <div><i class="fa fa-fw fa-photo"></i></div>
+        <div><i class="fa fa-fw fa-pie-chart"></i></div>
+        <div><i class="fa fa-fw fa-print"></i></div>
+        <div><i class="fa fa-fw fa-qrcode"></i></div>
+        <div><i class="fa fa-fw fa-question"></i></div>
+        <div><i class="fa fa-fw fa-refresh"></i></div>
+        <div><i class="fa fa-fw fa-search"></i></div>
+        <div><i class="fa fa-fw fa-shopping-cart"></i></div>
+        <div><i class="fa fa-fw fa-sort"></i></div>
+        <div><i class="fa fa-fw fa-sort-alpha-asc"></i></div>
+        <div><i class="fa fa-fw fa-sort-alpha-desc"></i></div>
+        <div><i class="fa fa-fw fa-sort-asc"></i></div>
+        <div><i class="fa fa-fw fa-sort-desc"></i></div>
+        <div><i class="fa fa-fw fa-sort-amount-asc"></i></div>
+        <div><i class="fa fa-fw fa-sort-amount-desc"></i></div>
+        <div><i class="fa fa-fw fa-sort-numeric-asc"></i></div>
+        <div><i class="fa fa-fw fa-sort-numeric-desc"></i></div>
+        <div><i class="fa fa-fw fa-star"></i></div>
+        <div><i class="fa fa-fw fa-sort"></i></div>
+        <div><i class="fa fa-fw fa-tasks"></i></div>
+        <div><i class="fa fa-fw fa-trash"></i></div>
+        <div><i class="fa fa-fw fa-user"></i></div>
+        <div><i class="fa fa-fw fa-wrench"></i></div>
+        <div><i class="fa fa-fw fa-usd"></i></div>
+        <div><i class="fa fa-fw fa-file-text"></i></div>
+        <div><i class="fa fa-fw fa-list"></i></div>
+        <div><i class="fa fa-fw fa-list-ul"></i></div>
+        <div><i class="fa fa-fw fa-paperclip"></i></div>
+        <div><i class="fa fa-fw fa-table"></i></div>
+        <div><i class="fa fa-fw fa-chevron-left"></i></div>
+        <div><i class="fa fa-fw fa-chevron-right"></i></div>
+      </div>
+    </div>
+
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -37,8 +159,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
