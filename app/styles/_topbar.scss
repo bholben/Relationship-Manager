@@ -54,7 +54,7 @@ header.topbar {
     background-color: white;
     box-shadow: $dropShadow;
     ul.user-menu {
-      // display: none;
+      display: none;
       overflow: auto;
       li {
         height: $menuUserButtonHeight;
