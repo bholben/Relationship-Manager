@@ -14,28 +14,49 @@
     };
 
     var createRelationship = function(relationship) {
-      var url = PARSE.URL + 'classes/Gravatars',
-          obj = addGravatar(relationship),
+      var url = PARSE.URL + 'classes/Relationships',
+          data = addGravatar(relationship),
           config = PARSE.CONFIG;
 
-      $http.post(url, obj, config)
-        .success(function (data) {
-          $rootScope.$broadcast('relationships:created', obj);
+      $http.post(url, data, config)
+        .success(function () {
+          $rootScope.$broadcast('relationships:created', data);
         });
     };
 
-    var fetchRelationships = function() {
-      var url = PARSE.URL + 'classes/Gravatars',
+    var retrieveRelationships = function() {
+      var url = PARSE.URL + 'classes/Relationships',
           config = PARSE.CONFIG;
       $http.get(url, config)
-        .success(function (data) {
-          $rootScope.$broadcast('relationships:fetched', data.results);
+        .success(function (response) {
+          $rootScope.$broadcast('relationships:retrieved', response.results);
         });
+    };
+
+    var updateRelationship = function(relationship) {
+      var url = PARSE.URL + 'classes/Relationships/' + relationship.objectId,
+          data = addGravatar(relationship),
+          config = PARSE.CONFIG;
+      $http.put(url, data, config)
+        .success(function () {
+          $rootScope.$broadcast('relationships:updated');
+        })
+    };
+
+    var deleteRelationship = function(relationship) {
+      var url = PARSE.URL + 'classes/Relationships/' + relationship.objectId,
+          config = PARSE.CONFIG;
+      $http.delete(url, config)
+        .success(function () {
+          $rootScope.$broadcast('relationships:deleted');
+        })
     };
 
     return {
       create: createRelationship,
-      fetch: fetchRelationships
+      retrieve: retrieveRelationships,
+      update: updateRelationship,
+      delete: deleteRelationship
     };
 
   });
