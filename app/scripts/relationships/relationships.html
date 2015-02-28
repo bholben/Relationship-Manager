@@ -31,11 +31,11 @@
 
       <h4 class="heading">{{ relationship.name }}</h4>
 
-      <form ng-submit="create(name)">
-        <input ng-model="name" type="text" placeholder="Enter Name">
+      <form ng-submit="create(relationship)">
+        <input ng-model="relationship.name" type="text" placeholder="Enter Name">
         <button>Try it out!</button>
         <br>
-        {{ name }}
+        {{ relationship.name }}
         <br>
       </form>
 

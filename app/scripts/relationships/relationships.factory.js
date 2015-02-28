@@ -20,14 +20,17 @@
 
       $http.post(url, obj, config)
         .success(function (data) {
-          $rootScope.$broadcast('relationships:create', obj);
+          $rootScope.$broadcast('relationships:created', obj);
         });
     };
 
     var fetchRelationships = function() {
       var url = PARSE.URL + 'classes/Gravatars',
           config = PARSE.CONFIG;
-      return $http.get(url, config);
+      $http.get(url, config)
+        .success(function (data) {
+          $rootScope.$broadcast('relationships:fetched', data.results);
+        });
     };
 
     return {
