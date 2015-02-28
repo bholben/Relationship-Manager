@@ -10,15 +10,16 @@
       $scope.relationships = data.results;
     });
 
-    $scope.add = function (name) {
-      RelationshipsFactory.add(name);
+    $scope.create = function (name) {
+      RelationshipsFactory.create({name: name});
     };
 
     $scope.show = function (relationship) {
-      RelationshipsFactory.show(relationship.name);
+      // Set the detail view to the selected object.
+      $scope.relationship = relationship;
     };
 
-    $rootScope.$on('relationships:showDetails', function (event, relationship) {
+    $rootScope.$on('relationships:create', function (event, relationship) {
       // To update the list veiw, I'm simply appending the new relationship to
       // the list instead of fetching a new collection (faster).
       $scope.relationships.push(relationship);

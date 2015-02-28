@@ -5,32 +5,23 @@
 
   .factory('RelationshipsFactory', function ($http, $rootScope, PARSE) {
 
-    var createRelationshipObj = function (name) {
+    var addGravatar = function (relationship) {
       var url = 'http://www.gravatar.com/avatar/',
-          hash = CryptoJS.MD5(name).toString(),
+          hash = CryptoJS.MD5(relationship.name).toString(),
           urlHash = url + hash;
-      return {
-        name: name,
-        gravatarURL:   urlHash + '?s=300&d=monsterid'
-      };
+      relationship.gravatarURL = urlHash + '?s=300&d=monsterid';
+      return relationship;
     };
 
-    var broadcast = function (relationshipObj) {
-      $rootScope.$broadcast('relationships:showDetails', relationshipObj);
-    };
-
-    var addRelationship = function(name) {
+    var createRelationship = function(relationship) {
       var url = PARSE.URL + 'classes/Gravatars',
-          obj = createRelationshipObj(name),
+          obj = addGravatar(relationship),
           config = PARSE.CONFIG;
 
       $http.post(url, obj, config)
-        .success(function (data) { broadcast(obj); });
-    };
-
-    var showRelationship = function(name) {
-      var relationshipObj = createRelationshipObj(name);
-      broadcast(relationshipObj);
+        .success(function (data) {
+          $rootScope.$broadcast('relationships:create', obj);
+        });
     };
 
     var fetchRelationships = function() {
@@ -40,8 +31,7 @@
     };
 
     return {
-      add: addRelationship,
-      show: showRelationship,
+      create: createRelationship,
       fetch: fetchRelationships
     };
 
