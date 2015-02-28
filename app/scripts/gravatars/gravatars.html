@@ -1,9 +1,60 @@
 
-<form ng-submit="addGravatar(name)" id="gravatarForm" style="margin-left: 300px">
-  <input ng-model="name" type="text" placeholder="Enter Name">
-  <button>Try it out!</button>
-  <br>
-  {{name}}
-  <br>
-</form>
+<h4>Contacts</h4>
+<div class="wrapper">
+
+  <div class="view-frame-left">
+    <div class="view-content">
+      <h4>Contact List</h4>
+
+      <ul>
+        <li ng-repeat="gravatar in gravatars" ng-click="show(gravatar)"class="contact">
+
+          <div class="image">
+            <img ng-src="{{ gravatar.monsterURL }}">
+          </div>
+
+          <div class="info">
+            <div class="name">{{ gravatar.name }}</div>
+            <div class="company">General Industries, LLC</div>
+            <div class="title">Lead Floor Mopper</div>
+          </div>
+
+          <div class="reach-out">
+            <div class="phone">(404) 555-1212<i class="fa fa-fw fa-comment-o"></i><i class="fa fa-fw fa-phone"></i></div>
+            <div class="email"><a href="mailto:joeblow@gmail.com">joeblow@gmail.com<i class="fa fa-fw fa-envelope-o"></i></a></div>
+          </div>
+
+        </li>
+      </ul>
+
+      <div>Total contacts: {{ gravatars.length }}</div>
+    </div>
+  </div>
+
+
+  <div class="view-frame-right">
+    <div ng-cloak="ng-cloak" class="view-content">
+
+      <h4 class="heading">{{ gravatar.name }}</h4>
+
+      <form ng-submit="add(name)" id="gravatarForm">
+        <input ng-model="name" type="text" placeholder="Enter Name">
+        <button>Try it out!</button>
+        <br>
+        {{name}}
+        <br>
+      </form>
+
+      <div id="avatars">
+        <img ng-src="{{ gravatar.monsterURL }}" style="display: block;">
+        <img ng-src="{{ gravatar.identiconURL }}">
+        <img ng-src="{{ gravatar.wavatarURL }}">
+        <img ng-src="{{ gravatar.retroURL }}">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
 

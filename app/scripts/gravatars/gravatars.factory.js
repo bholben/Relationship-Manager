@@ -3,58 +3,48 @@
 
   angular.module('app')
 
-  .factory('AvatarFactory', function ($http, PARSE) {
+  .factory('AvatarFactory', function ($http, $rootScope, PARSE) {
 
-    var createHash = function (name) {
-      return CryptoJS.MD5(name).toString();
-    };
-
-    var createGravatars = function (name, hash) {
+    var createGravatarObj = function (name) {
+      var url = 'http://www.gravatar.com/avatar/',
+          hash = CryptoJS.MD5(name).toString(),
+          urlHash = url + hash;
       return {
         name: name,
-        monsterURL: 'http://www.gravatar.com/avatar/' + hash + '?s=300&d=monsterid',
-        identiconURL: 'http://www.gravatar.com/avatar/' + hash + '?s=100&d=identicon',
-        wavatarURL: 'http://www.gravatar.com/avatar/' + hash + '?s=100&d=wavatar',
-        retroURL: 'http://www.gravatar.com/avatar/' + hash + '?s=100&d=retro'
+        monsterURL:   urlHash + '?s=300&d=monsterid',
+        identiconURL: urlHash + '?s=100&d=identicon',
+        wavatarURL:   urlHash + '?s=100&d=wavatar',
+        retroURL:     urlHash + '?s=100&d=retro'
       };
     };
 
-    var updateView = function (gravatarObj) {
-      var form = angular.element('#gravatarForm'),
-          monsterImage = '<img src="' + gravatarObj.monsterURL + '" style="display: block;">',
-          identiconImage = '<img src="' + gravatarObj.identiconURL + '">',
-          wavatarImage = '<img src="' + gravatarObj.wavatarURL + '">',
-          retroImage = '<img src="' + gravatarObj.retroURL + '">';
-
-      form.find('input').val('');
-      form.find('img').remove();
-
-      form.append(monsterImage);
-      form.append(identiconImage);
-      form.append(wavatarImage);
-      form.append(retroImage);
-    };
-
-    var postData = function (gravatarObj) {
-      $http.post(PARSE.URL + 'classes/Gravatars', gravatarObj, PARSE.CONFIG)
-        .success(function (data) {
-          console.log(data);
-          updateView(gravatarObj);
-        });
+    var broadcast = function (gravatarObj) {
+      $rootScope.$broadcast('gravatars:showDetails', gravatarObj);
     };
 
     var addGravatar = function(name) {
-      var hash = createHash(name),
-          gravatarObj = createGravatars(name, hash);
-      postData(gravatarObj);
+      var url = PARSE.URL + 'classes/Gravatars',
+          obj = createGravatarObj(name),
+          config = PARSE.CONFIG;
+
+      $http.post(url, obj, config)
+        .success(function (data) { broadcast(obj); });
+    };
+
+    var showGravatar = function(name) {
+      var gravatarObj = createGravatarObj(name);
+      broadcast(gravatarObj);
     };
 
     var fetchGravatars = function() {
-      $http.get(PARSE.URL + 'classes/Monsters', PARSE.CONFIG);
+      var url = PARSE.URL + 'classes/Gravatars',
+          config = PARSE.CONFIG;
+      return $http.get(url, config);
     };
 
     return {
       add: addGravatar,
+      show: showGravatar,
       fetch: fetchGravatars
     };
 

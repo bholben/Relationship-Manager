@@ -3,6 +3,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   font-size: 13px;
+  // letter-spacing: 1px;
+  // line-height: 1.4;
   color: $cGray3;
   background-color: $cGrayEC;
 }
@@ -12,13 +14,22 @@ body {
 }
 
 ul {
-  list-style: none;
   margin: 0;
-  padding-left: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 8px 0;
+  list-style : none;
 }
 
 a {
   text-decoration: none;
   // color: $cTextBrand;
+}
+
+.ng-cloak {
+  display: none !important;
 }
 

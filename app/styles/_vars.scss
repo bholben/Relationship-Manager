@@ -23,6 +23,7 @@ $menuFooterHeight: 45px;
 $menuItemsTopOffset: $menuGroupTabsHeight + $menuGroupTitleHeight;
 $menuItemsBottomOffset: $topBarHeight + $menuFooterHeight;
 $menuUserButtonHeight: 40px;
+$filterHeight: 40px;
 
 $zIndexTopBar: 20;
 // $zIndexMenu: 10;
@@ -45,8 +46,11 @@ $cBase2: #5cf67e;      // background
 $cBase2Dark: darken($cBase2, 3%);  // foreground, text
 $cBase3: #0f9d58;      // background
 $cBase3Dark: darken($cBase3, 3%);  // foreground, text
+$cAccent: #aa7239;
+
 $dropShadow: 0 0 4px rgba(0,0,0,.14), 2px 4px 8px rgba(0,0,0,.28);
 
+$borderRadSmall: 4px;
 
 /* CSS - Cascading Style Sheet */
 /* Palette color codes */

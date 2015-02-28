@@ -3,15 +3,23 @@
 
   angular.module('app')
 
-  .controller('Gravatars', function($scope, AvatarFactory) {
+  .controller('Gravatars', function($scope, $rootScope, AvatarFactory) {
 
-    $scope.addGravatar = function (name) {
+    AvatarFactory.fetch().success(function (data) {
+      $scope.gravatars = data.results;
+    });
+
+    $scope.add = function (name) {
       AvatarFactory.add(name);
     };
 
-    $scope.fetchGravatars = function () {
-      AvatarFactory.fetch();
+    $scope.show = function (gravatar) {
+      AvatarFactory.show(gravatar.name);
     };
+
+    $rootScope.$on('gravatars:showDetails', function (event, gravatar) {
+      $scope.gravatar = gravatar;
+    });
 
   });
 
