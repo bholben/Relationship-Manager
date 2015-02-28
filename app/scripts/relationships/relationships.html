@@ -1,0 +1,56 @@
+
+<h1 class="body-title">Relationships</h1>
+<div class="wrapper">
+
+  <div class="view-frame-left">
+    <div class="view-content">
+      <ul>
+        <li ng-repeat="r in relationships" ng-click="show(r)"class="relationship">
+
+          <div class="avatar">
+            <img ng-src="{{ r.gravatarURL }}">
+          </div>
+
+          <div class="info">
+            <div class="name">{{ r.name }}</div>
+            <div class="bottom">
+              <div class="company">{{ r.company || 'General Industries, LLC' }}</div>
+              <div class="title">{{ r.title || 'Lead Floor Mopper' }}</div>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+      <div class="total">Total relationships: {{ relationships.length }}</div>
+    </div>
+  </div>
+
+
+  <div class="view-frame-right">
+    <div ng-cloak="ng-cloak" class="view-content">
+
+      <h4 class="heading">{{ relationship.name }}</h4>
+
+      <form ng-submit="add(name)">
+        <input ng-model="name" type="text" placeholder="Enter Name">
+        <button>Try it out!</button>
+        <br>
+        {{ name }}
+        <br>
+      </form>
+
+      <div id="avatars">
+        <img ng-src="{{ relationship.gravatarURL }}">
+      </div>
+
+      <div class="reach-out">
+        <div class="phone">(404) 555-1212<i class="fa fa-fw fa-comment-o"></i><i class="fa fa-fw fa-phone"></i></div>
+        <div class="email"><a href="mailto:joeblow@gmail.com">joeblow@gmail.com<i class="fa fa-fw fa-envelope-o"></i></a></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,61 @@
+
+li.relationship {
+  height: 80px;
+  padding: 10px 15px;
+  margin: 0 -15px;
+  &:hover {
+    background-color: $cHover;
+    cursor: pointer;
+  }
+  &:first-child {
+    height: 85px;
+    margin-top: -15px;
+    padding-top: 15px;
+  }
+  .avatar {
+    float: left;
+    img {
+      width: 60px;
+      margin-right: 10px;
+    }
+  }
+  .info {
+    float: left;
+    position: relative;
+    width: 50%;
+    height: 60px;
+    .name {
+      font-size: 24px;
+    }
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      .company, .title {
+        color: $cGrayA;
+      }
+    }
+  }
+  .reach-out {
+    float: right;
+    line-height: 50px;
+    .phone {
+      text-align: right;
+      margin: 10px 0;
+    }
+    .email {
+      text-align: right;
+    }
+    i {
+      margin-left: 10px;
+      font-size: 20px;
+      color: $cAccent;
+    }
+    .bob-bottom {
+      color: red;
+      line-height: 1em;
+      vertical-align: bottom;
+    }
+  }
+}
+
+

@@ -5,6 +5,8 @@ $minWidthTablet: 768px;
 $minWidthDesktop: 992px;
 $minWidthWide: 1200px;
 
+$bodyWrapperWidth: 900px;
+
 // Layout - menu horizontal arrangement
 $mainMenuWidth: 260px;
 $sidePadding: 30px;
@@ -47,6 +49,7 @@ $cBase2Dark: darken($cBase2, 3%);  // foreground, text
 $cBase3: #0f9d58;      // background
 $cBase3Dark: darken($cBase3, 3%);  // foreground, text
 $cAccent: #aa7239;
+$cHover: #f8f8f8;
 
 $dropShadow: 0 0 4px rgba(0,0,0,.14), 2px 4px 8px rgba(0,0,0,.28);
 

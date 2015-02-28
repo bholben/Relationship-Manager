@@ -7,8 +7,10 @@
     URL: 'https://api.parse.com/1/',
     CONFIG: {
       headers: {
-        'X-Parse-Application-Id': 'FgjTDBzvvX7lRwBn2UqEODHWscZOaTPtWuxl3pgf',
-        'X-Parse-REST-API-Key': 'UXb3qtdbcWyPnX6eQtBQTGK4UdzCtmHPxrtQV8ZS',
+        // 'X-Parse-Application-Id': 'FgjTDBzvvX7lRwBn2UqEODHWscZOaTPtWuxl3pgf',
+        // 'X-Parse-REST-API-Key': 'UXb3qtdbcWyPnX6eQtBQTGK4UdzCtmHPxrtQV8ZS',
+        'X-Parse-Application-Id': 'OIFByyGW416J5jIA1MOKOKHqZEuja4krmNLjWAha',
+        'X-Parse-REST-API-Key': '2Opu5BXRVfLZjyFbc3wbRhIMIQFh2BbPsGdPbZsh',
         'Content-Type': 'application/json'
       }
     }
@@ -18,13 +20,13 @@
 
     $routeProvider
       .when('/', {
-        templateUrl: 'scripts/gravatars/gravatars.html',
-        controller: 'Gravatars'
+        templateUrl: 'scripts/relationships/relationships.html',
+        controller: 'Relationships'
       })
 
-      .when('/gravatars', {
-        templateUrl: 'scripts/gravatars/gravatars.html',
-        controller: 'Gravatars'
+      .when('/relationships', {
+        templateUrl: 'scripts/relationships/relationships.html',
+        controller: 'Relationships'
       })
 
       .when('/fonts', {

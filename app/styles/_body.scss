@@ -1,100 +1,37 @@
 
 section.body {
-  position: fixed;
-  top: $topBarHeight;
-  left: 0;
-  right: 0;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   .body-title {
-    width: 900px;
+    width: $bodyWrapperWidth;
     margin: 20px auto 0;
     text-align: center;
     letter-spacing: 1px;
     font-weight: 400;
     color: $cGray9;
   }
-  div.wrapper {
-    width: 900px;
-    margin: 0 auto $topBarHeight + 10px;
-    div.view-frame-left, div.view-frame-right {
+  .wrapper {
+    width: $bodyWrapperWidth;
+    overflow: hidden;
+    margin: 0 auto;
+    .view-frame-left, .view-frame-right {
+      float: left;
       width: 50%;
-      margin: 0 auto $topBarHeight + 10px;
+      margin: 0 auto;
       padding: 15px;
     }
-    div.view-frame-left {
-      float: left;
-    }
-    div.view-frame-right {
-      float: right;
-    }
-    div.view-content {
-      position: relative;
+    .view-content {
       overflow: auto;
       padding: 15px;
       background-color: white;
       box-shadow: $dropShadow;
-      li.contact {
-        height: 80px;
-        padding: 10px 0;
-        margin: 0;
-        &:hover {
-          background-color: $cGrayEC;
-        }
-        div.image {
-          float: left;
-          img {
-            width: 60px;
-            margin-right: 10px;
-          }
-        }
-        div.info {
-          float: left;
-          div.name {
-            font-size: 24px;
-          }
-          div.company {
-            margin-top: 2px;
-            color: $cGrayA;
-          }
-          div.title {
-            color: $cGrayA;
-          }
-        }
-        div.reach-out {
-          float: right;
-          div.phone {
-            text-align: right;
-            margin: 10px 0;
-          }
-          div.email {
-            text-align: right;
-          }
-          i {
-            margin-left: 10px;
-            font-size: 20px;
-            color: $cAccent;
-          }
-        }
-      }
     }
   }
 }
 
-.left-col-grid {
-  width: 300px;
-  height: 100%;
-}
-
-.st-sort-ascent:after {
-  content: '\25B2';
-}
-
-.st-sort-descent:after {
-  content: '\25BC';
-}
-
-.st-selected {
-  background-color: $cBase1;
+.total {
+  margin: 0 -15px -15px;
+  padding: 15px;
+  background-color: $cGrayC;
 }
 
