@@ -55,11 +55,15 @@
           .success(function () { broadcast('deleted', obj); });
       },
 
-      validateName: function(obj) {
+      validName: function(obj) {
+        // Create an organization nickname if one is not entered.
+        if (obj.isOrg) obj.nickname = obj.nickname || obj.bizName;
+        // Create a screen name if required fields are present.
         if (obj.nickname || obj.fname && obj.lname) {
           obj.name = obj.nickname || obj.fname + ' ' + obj.lname;
           return obj;
         }
+        // Nothing returned if invalid.
       }
     };
 

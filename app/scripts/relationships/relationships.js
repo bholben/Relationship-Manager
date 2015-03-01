@@ -11,44 +11,22 @@
     $scope.r = {isOrg: true};
 
 
-    // CRUD operations
-
-    $scope.create = function (r) {
-      r.nickname = r.nickname || r.bizName;
-      if (!r.nickname) delete r.nickname;
-      console.log(r);
-      if (rf.validateName(r)) rf.create(r);
-    };
-
-    $scope.retrieve = function () {
-      rf.retrieveAll();
-    };
-
-    $scope.update = function (r) {
-      r.nickname = r.nickname || r.bizName;
-      console.log(r);
-      // Currently sending the entire relationship object.
-      if (rf.validateName(r)) rf.update(r);
-    };
-
-    $scope.delete = function (r) {
-      rf.delete(r);
-    };
-
-
     // Behavior
 
-    $scope.submitText = function() {
+    $scope.submitButtonText = function() {
       return $scope.new ? 'Create' : 'Update';
     };
 
     $scope.orgClicked = function (isOrg) {
+      // Update the view
       $scope.r.isOrg = isOrg;
+      // Eliminate meaningless names & avoid uniqueness conflicts.
       if (isOrg) {
         delete $scope.r.fname;
         delete $scope.r.lname;
       } else {
         delete $scope.r.bizName;
+        delete $scope.r.nickname;
       }
     };
 
@@ -62,14 +40,31 @@
     };
 
     $scope.select = function (r, index) {
+      // Fill in the form.
       $scope.new = false;
       $scope.r = r;
+      // Highlight the active list item.
       $scope.selectedIndex = index;
-      // console.log(r);
     };
 
-    var resetForm = function() {
 
+    // CRUD operations
+
+    var create = function (r) { if (rf.validName(r)) rf.create(r); };
+
+    var retrieveAll = function () { rf.retrieveAll(); };
+
+    // Currently sending the entire relationship object.
+    var update = function (r) { if (rf.validName(r)) rf.update(r); };
+
+    $scope.delete = function (r) { rf.delete(r); };
+
+    $scope.submit = function(r) {
+      if ($scope.new) {
+        create(r);
+      } else {
+        update(r);
+      }
     };
 
 
@@ -102,7 +97,7 @@
 
     // Initialize list
 
-    $scope.retrieve();
+    retrieveAll();
 
   });
 
