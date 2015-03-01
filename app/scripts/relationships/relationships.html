@@ -12,10 +12,10 @@
           </div>
 
           <div class="info">
-            <div class="name">{{ r.name }}</div>
+            <div class="name">{{ r.fname + ' ' + r.lname }}</div>
             <div class="bottom">
-              <div class="company">{{ r.company || 'General Industries, LLC' }}</div>
-              <div class="title">{{ r.title || 'Lead Floor Mopper' }}</div>
+              <div class="company">{{ r.company }}</div>
+              <div class="title">{{ r.title }}</div>
             </div>
           </div>
 
@@ -31,11 +31,13 @@
 
       <h4 class="heading">{{ relationship.name }}</h4>
 
-      <form ng-submit="create(relationship)">
-        <input ng-model="relationship.name" type="text" placeholder="Enter Name">
-        <button>Try it out!</button>
-        <br>
-        {{ relationship.name }}
+      <form ng-submit="create(relationship)" id="relationshipForm">
+        <input ng-model="relationship.fname" type="text" placeholder="First Name">
+        <input ng-model="relationship.lname" type="text" placeholder="Last Name">
+        <input ng-model="relationship.company" type="text" placeholder="Company">
+        <input ng-model="relationship.title" type="text" placeholder="Title">
+        <input ng-model="relationship.email" type="text" placeholder="email">
+        <button>Submit</button>
         <br>
       </form>
 
@@ -44,8 +46,8 @@
       </div>
 
       <div class="reach-out">
-        <div class="phone">(404) 555-1212<i class="fa fa-fw fa-comment-o"></i><i class="fa fa-fw fa-phone"></i></div>
-        <div class="email"><a href="mailto:joeblow@gmail.com">joeblow@gmail.com<i class="fa fa-fw fa-envelope-o"></i></a></div>
+        <div class="phone">{{ relationship.phone }}<i class="fa fa-fw fa-comment-o"></i><i class="fa fa-fw fa-phone"></i></div>
+        <div class="email"><a href="mailto:joeblow@gmail.com">{{ relationship.email }}<i class="fa fa-fw fa-envelope-o"></i></a></div>
       </div>
 
       <button ng-click="delete(relationship)">Delete</button>

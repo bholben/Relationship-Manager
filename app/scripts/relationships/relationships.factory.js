@@ -5,51 +5,48 @@
 
   .factory('RelationshipsFactory', function ($http, $rootScope, PARSE) {
 
-    var addGravatar = function (relationship) {
+    var addGravatar = function (obj) {
       var url = 'http://www.gravatar.com/avatar/',
-          hash = CryptoJS.MD5(relationship.name).toString(),
+          hash = CryptoJS.MD5(obj.email).toString(),
           urlHash = url + hash;
-      relationship.gravatarURL = urlHash + '?s=300&d=monsterid';
-      return relationship;
+      obj.gravatarURL = urlHash + '?s=300&d=monsterid';
+      return obj;
     };
 
-    var createRelationship = function(relationship) {
-      var url = PARSE.URL + 'classes/Relationships',
-          data = addGravatar(relationship),
-          config = PARSE.CONFIG;
-
-      $http.post(url, data, config)
-        .success(function () {
-          $rootScope.$broadcast('relationships:created', data);
-        });
+    var url = function(id) {
+      return PARSE.URL + 'classes/Relationships/' + (id || '');
     };
 
+    var config = PARSE.CONFIG;
+
+    var broadcast = function(action, obj) {
+      $rootScope.$broadcast('relationships:' + action, obj);
+    };
+
+    // AJAX POST request to ~/Relationships
+    var createRelationship = function(obj) {
+      var data = addGravatar(obj);
+      $http.post(url(), data, config)
+        .success(function () { broadcast('created', data); });
+    };
+
+    // AJAX GET request to ~/Relationships
     var retrieveRelationships = function() {
-      var url = PARSE.URL + 'classes/Relationships',
-          config = PARSE.CONFIG;
-      $http.get(url, config)
-        .success(function (response) {
-          $rootScope.$broadcast('relationships:retrieved', response.results);
-        });
+      $http.get(url(), config)
+        .success(function (res) { broadcast('retrieved', res.results); });
     };
 
-    var updateRelationship = function(relationship) {
-      var url = PARSE.URL + 'classes/Relationships/' + relationship.objectId,
-          data = addGravatar(relationship),
-          config = PARSE.CONFIG;
-      $http.put(url, data, config)
-        .success(function () {
-          $rootScope.$broadcast('relationships:updated');
-        })
+    // AJAX PUT request to ~/Relationships/:objectId
+    var updateRelationship = function(obj) {
+      var data = (obj.email) ? addGravatar(obj) : obj;
+      $http.put(url(obj.objectId), data, config)
+        .success(function () { broadcast('updated'); });
     };
 
-    var deleteRelationship = function(relationship) {
-      var url = PARSE.URL + 'classes/Relationships/' + relationship.objectId,
-          config = PARSE.CONFIG;
-      $http.delete(url, config)
-        .success(function () {
-          $rootScope.$broadcast('relationships:deleted');
-        })
+    // AJAX DELETE request to ~/Relationships/:objectId
+    var deleteRelationship = function(obj) {
+      $http.delete(url(obj.objectId), config)
+        .success(function () { broadcast('deleted', obj); });
     };
 
     return {

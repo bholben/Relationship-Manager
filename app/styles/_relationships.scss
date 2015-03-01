@@ -1,4 +1,14 @@
 
+$relListWidth: 50%;
+
+section.body .wrapper .view-frame-left {
+  width: $relListWidth;
+}
+
+section.body .wrapper .view-frame-right {
+  width: 100% - $relListWidth;
+}
+
 li.relationship {
   height: 80px;
   padding: 10px 15px;
