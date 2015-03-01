@@ -8,7 +8,7 @@
 
     // Initialize form
     $scope.new = true;
-    $scope.relationship = {isOrg: true};
+    $scope.r = {isOrg: true};
 
 
     // CRUD operations
@@ -42,18 +42,27 @@
     };
 
     $scope.orgClicked = function (isOrg) {
-      $scope.relationship.isOrg = isOrg;
+      $scope.r.isOrg = isOrg;
     };
 
-    $scope.add = function() {
+    $scope.resetForm = function() {
+      // Reset the header
       $scope.new = true;
-      $scope.relationship = '';
+      // Clear the form
+      $scope.r = {isOrg: true};
+      // Remove active class from item in list
+      $scope.selectedIndex = -1;
     };
 
     $scope.select = function (r, index) {
       $scope.new = false;
-      $scope.relationship = r;
+      $scope.r = r;
       $scope.selectedIndex = index;
+      console.log(r);
+    };
+
+    var resetForm = function() {
+
     };
 
 
@@ -63,7 +72,7 @@
       // To update the list view, I'm simply appending the new relationship to
       // the list instead of fetching a new collection (faster).
       $scope.relationships.push(r);
-      $scope.relationship = {};
+      $scope.resetForm();
     });
 
     $rootScope.$on('relationships:retrieved', function (event, r) {
@@ -77,7 +86,7 @@
         return rel.objectId !== r.objectId;
       });
       // Clear the form.
-      $scope.relationship = '';
+      $scope.r = '';
     });
 
 

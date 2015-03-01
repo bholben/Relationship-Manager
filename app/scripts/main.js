@@ -4,7 +4,8 @@
   angular.module('app', [
     // App dependencies.
     'ngRoute',      // $routeProvider for page navigation
-    'ui.checkbox',  // Visual improvement over default HTML checkboxes
+    'ui.bootstrap', // tooltip
+    'ui.checkbox',  // Visual improvement over default HTML checkboxes (dragged along bootstrap)
   ])
 
   // These Parse headers are tacked onto all AJAX requests.

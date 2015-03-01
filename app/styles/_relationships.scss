@@ -61,10 +61,14 @@ header.list {
   margin-bottom: 15px;
   i {
     float: right;
+    margin-left: 20px;
     line-height: 35px;
     color: $cGray7;
     font-size: 24px;
     cursor: pointer;
+    &:hover {
+      color: $cGray3;
+    }
   }
 }
 

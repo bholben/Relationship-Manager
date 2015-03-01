@@ -22,45 +22,41 @@
       $rootScope.$broadcast('relationships:' + action, obj);
     };
 
-    var validateName = function(obj) {
-      if (obj.nickname || obj.fname && obj.lname) {
-        obj.name = obj.nickname || obj.fname + ' ' + obj.lname;
-        return obj;
-      }
-    };
-
-    // AJAX POST request to ~/Relationships
-    var createRelationship = function(obj) {
-      obj = addGravatar(obj);
-      $http.post(url(), obj, config)
-        .success(function () { broadcast('created', obj); });
-    };
-
-    // AJAX GET request to ~/Relationships
-    var retrieveRelationships = function() {
-      $http.get(url(), config)
-        .success(function (res) { broadcast('retrieved', res.results); });
-    };
-
-    // AJAX PUT request to ~/Relationships/:objectId
-    var updateRelationship = function(obj) {
-      var data = (obj.email) ? addGravatar(obj) : obj;
-      $http.put(url(obj.objectId), data, config)
-        .success(function () { broadcast('updated'); });
-    };
-
-    // AJAX DELETE request to ~/Relationships/:objectId
-    var deleteRelationship = function(obj) {
-      $http.delete(url(obj.objectId), config)
-        .success(function () { broadcast('deleted', obj); });
-    };
-
     return {
-      create: createRelationship,
-      retrieveAll: retrieveRelationships,
-      update: updateRelationship,
-      delete: deleteRelationship,
-      validateName: validateName
+
+      // AJAX POST request to ~/Relationships
+      create: function(obj) {
+        obj = addGravatar(obj);
+        $http.post(url(), obj, config)
+          .success(function () { broadcast('created', obj); });
+      },
+
+      // AJAX GET request to ~/Relationships
+      retrieveAll: function() {
+        $http.get(url(), config)
+          .success(function (res) { broadcast('retrieved', res.results); });
+      },
+
+      // AJAX PUT request to ~/Relationships/:objectId
+      update: function(obj) {
+        var data = (obj.email) ? addGravatar(obj) : obj;
+        $http.put(url(obj.objectId), data, config)
+          .success(function () { broadcast('updated'); });
+      },
+
+      // AJAX DELETE request to ~/Relationships/:objectId
+      delete: function(obj) {
+        $http.delete(url(obj.objectId), config)
+          .success(function () { broadcast('deleted', obj); });
+      },
+
+      validateName: function(obj) {
+        if (obj.nickname || obj.fname && obj.lname) {
+          obj.name = obj.nickname || obj.fname + ' ' + obj.lname;
+          return obj;
+        }
+      }
+
     };
 
   });
