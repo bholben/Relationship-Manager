@@ -5,14 +5,14 @@
   <div class="view-frame-left">
     <div class="view-content">
       <ul>
-        <li ng-repeat="r in relationships" ng-click="show(r)"class="relationship">
+        <li ng-repeat="r in relationships" ng-click="select(r, $index)" ng-class="{active: $index === selectedIndex}" class="relationship">
 
           <div class="avatar">
-            <img ng-src="{{ r.gravatarURL }}">
+            <img ng-src="{{ r.logo || r.gravatarURL }}">
           </div>
 
           <div class="info">
-            <div class="name">{{ r.fname + ' ' + r.lname }}</div>
+            <div class="name">{{ r.bizName || r.fname + ' ' + r.lname }}</div>
             <div class="bottom">
               <div class="company">{{ r.company }}</div>
               <div class="title">{{ r.title }}</div>
@@ -29,28 +29,168 @@
   <div class="view-frame-right">
     <div ng-cloak="ng-cloak" class="view-content">
 
-      <h4 class="heading">{{ relationship.name }}</h4>
+      <form ng-submit="create(relationship)">
 
-      <form ng-submit="create(relationship)" id="relationshipForm">
-        <input ng-model="relationship.fname" type="text" placeholder="First Name">
-        <input ng-model="relationship.lname" type="text" placeholder="Last Name">
-        <input ng-model="relationship.company" type="text" placeholder="Company">
-        <input ng-model="relationship.title" type="text" placeholder="Title">
-        <input ng-model="relationship.email" type="text" placeholder="email">
-        <button>Submit</button>
+
+      <div class="row org-indiv">
+          <div class="btn-group btn-group-justified" data-toggle="buttons">
+            <label class="btn btn-primary">
+              <input ng-click="orgClicked(true)" type="radio"> Organization
+            </label>
+            <label class="btn btn-primary">
+              <input ng-click="orgClicked(false)" type="radio"> Individual
+            </label>
+          </div>
+      </div>
+
+
+        <div class="rel-types">
+          <div class="rel-type-col">
+
+<!--         <div class="form-group core collapse" style="margin-bottom: 30px;">
+          <div class="col-xs-4 col-xs-offset-1"> -->
+
+            <div class="radio">
+              <label class="checkbox">
+                <checkbox ng-model="relationship.isCustomer"></checkbox>
+                &nbsp;&nbsp;Customer
+              </label>
+            </div>
+            <div class="radio">
+              <label class="checkbox">
+                <checkbox ng-model="relationship.isVendor"></checkbox>
+                &nbsp;&nbsp;Vendor
+              </label>
+            </div>
+            <div class="radio">
+              <label class="checkbox">
+                <checkbox ng-model="relationship.isEmployee"></checkbox>
+                &nbsp;&nbsp;Employee
+              </label>
+            </div>
+          </div>
+
+          <div class="rel-type-col">
+            <div class="radio">
+              <label class="checkbox">
+                <checkbox ng-model="relationship.isInvestor"></checkbox>
+                &nbsp;&nbsp;Owner/Investor
+              </label>
+            </div>
+            <div class="radio">
+              <label class="checkbox">
+                <checkbox ng-model="relationship.isBank"></checkbox>
+                &nbsp;&nbsp;Bank
+              </label>
+            </div>
+            <div class="radio">
+              <label class="checkbox">
+                <checkbox ng-model="relationship.isGovt"></checkbox>
+                &nbsp;&nbsp;Taxing Authority
+              </label>
+            </div>
+          </div>
+        </div>
+
         <br>
+
+
+        <div class="form-group organization">
+          <label id="biz-name-label" for="entity-name" class="col-xs-3 control-label">Name*</label>
+          <div class="col-xs-9">
+            <input ng-model="relationship.bizName" type="text" class="form-control" placeholder="Business/organization name" autofocus>
+          </div>
+          <div class="error-text">
+            <p class="col-xs-9 col-xs-offset-3 help-block"></p>
+          </div>
+        </div>
+
+        <div class="form-group organization">
+          <label for="nickname" class="col-xs-3 control-label">Nickame</label>
+          <div class="col-xs-9">
+            <input ng-model="relationship.nickname" type="text" class="form-control" name="nickname">
+          </div>
+          <div class="error-text">
+            <p class="col-xs-9 col-xs-offset-3 help-block"></p>
+          </div>
+        </div>
+
+
+        <div class="form-group individual">
+          <div class="col-xs-3">
+            <select ng-model="relationship.salutation" class="form-control">
+              <option value=""></option>
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="miss">Ms.</option>
+              <option value="dr">Dr.</option>
+            </select>
+          </div>
+          <div class="col-xs-4">
+            <input ng-model="relationship.fname" type="text" class="form-control" placeholder="First name*">
+          </div>
+          <div class="col-xs-5">
+            <input ng-model="relationship.lname" type="text" class="form-control" placeholder="Last name*">
+          </div>
+          <div class="error-text">
+            <p class="col-xs-12 help-block"></p>
+          </div>
+        </div>
+
+
+        <div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input ng-model="relationship.title" type="text" class="form-control" placeholder="Job title or functional area">
+            </div>
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input ng-model="relationship.email" type="text" class="form-control" placeholder="Email">
+            </div>
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <select ng-model="relationship.phone_prefix1" class="form-control">
+                <option value="main">Main</option>
+                <option value="direct" selected>Direct</option>
+                <option value="mobile">Mobile</option>
+                <option value="fax">Fax</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="col-xs-5">
+              <input ng-model="relationship.phone_no1" type="text" class="form-control">
+            </div>
+            <div class="col-xs-3">
+              <input ng-model="relationship.phone_ext1" type="text" class="form-control" placeholder="ext.">
+            </div>
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="buttons">
+          <div class="btn-group">
+            <button ng-click="delete(relationship)" type="button" class="btn btn-danger">Delete</button>
+          </div>
+          <div class="btn-group pull-right">
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </div>
+
+
       </form>
-
-      <div id="avatars">
-        <img ng-src="{{ relationship.gravatarURL }}">
-      </div>
-
-      <div class="reach-out">
-        <div class="phone">{{ relationship.phone }}<i class="fa fa-fw fa-comment-o"></i><i class="fa fa-fw fa-phone"></i></div>
-        <div class="email"><a href="mailto:joeblow@gmail.com">{{ relationship.email }}<i class="fa fa-fw fa-envelope-o"></i></a></div>
-      </div>
-
-      <button ng-click="delete(relationship)">Delete</button>
 
     </div>
   </div>

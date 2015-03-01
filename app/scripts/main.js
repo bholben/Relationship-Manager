@@ -1,7 +1,10 @@
 
 ;(function () {
 
-  angular.module('app', ['ngRoute'])
+  angular.module('app', [
+    'ngRoute',
+    'ui.checkbox'
+  ])
 
   .constant('PARSE', {
     URL: 'https://api.parse.com/1/',

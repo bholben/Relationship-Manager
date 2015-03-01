@@ -17,10 +17,16 @@ li.relationship {
     background-color: $cHover;
     cursor: pointer;
   }
+  &.active {
+    background-color: $cGrayA;
+  }
   &:first-child {
     height: 85px;
     margin-top: -15px;
     padding-top: 15px;
+  }
+  &:last-child {
+    height: 85px;
   }
   .avatar {
     float: left;
@@ -45,27 +51,24 @@ li.relationship {
       }
     }
   }
-  .reach-out {
-    float: right;
-    line-height: 50px;
-    .phone {
-      text-align: right;
-      margin: 10px 0;
-    }
-    .email {
-      text-align: right;
-    }
-    i {
-      margin-left: 10px;
-      font-size: 20px;
-      color: $cAccent;
-    }
-    .bob-bottom {
-      color: red;
-      line-height: 1em;
-      vertical-align: bottom;
+}
+
+.org-indiv {
+  padding: 10px 30px;
+}
+
+.rel-types {
+  margin: 0 auto;
+  overflow: hidden;
+  .rel-type-col {
+    float: left;
+    padding: 0 35px;  // This will be different on small devices
+    label.checkbox {
+      padding: 0;
     }
   }
 }
 
-
+.buttons {
+  padding: 10px 15px;
+}

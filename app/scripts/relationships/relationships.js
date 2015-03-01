@@ -5,7 +5,14 @@
 
   .controller('Relationships', function($scope, $rootScope, RelationshipsFactory) {
 
+    $scope.relationship = {isOrg: true};
+
+    $scope.orgClicked = function (isOrg) {
+      $scope.relationship.isOrg = isOrg;
+    };
+
     $scope.create = function (relationship) {
+      console.log(relationship);
       RelationshipsFactory.create(relationship);
     };
 
@@ -21,8 +28,9 @@
       RelationshipsFactory.delete(relationship);
     };
 
-    $scope.show = function (relationship) {
+    $scope.select = function (relationship, index) {
       $scope.relationship = relationship;
+      $scope.selectedIndex = index;
     };
 
     $rootScope.$on('relationships:created', function (event, relationship) {
