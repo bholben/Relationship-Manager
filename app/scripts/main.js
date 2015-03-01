@@ -2,16 +2,16 @@
 ;(function () {
 
   angular.module('app', [
-    'ngRoute',
-    'ui.checkbox'
+    // App dependencies.
+    'ngRoute',      // $routeProvider for page navigation
+    'ui.checkbox',  // Visual improvement over default HTML checkboxes
   ])
 
+  // These Parse headers are tacked onto all AJAX requests.
   .constant('PARSE', {
     URL: 'https://api.parse.com/1/',
     CONFIG: {
       headers: {
-        // 'X-Parse-Application-Id': 'FgjTDBzvvX7lRwBn2UqEODHWscZOaTPtWuxl3pgf',
-        // 'X-Parse-REST-API-Key': 'UXb3qtdbcWyPnX6eQtBQTGK4UdzCtmHPxrtQV8ZS',
         'X-Parse-Application-Id': 'OIFByyGW416J5jIA1MOKOKHqZEuja4krmNLjWAha',
         'X-Parse-REST-API-Key': '2Opu5BXRVfLZjyFbc3wbRhIMIQFh2BbPsGdPbZsh',
         'Content-Type': 'application/json'
@@ -19,8 +19,8 @@
     }
   })
 
+  // Router configuration.
   .config(function ($routeProvider) {
-
     $routeProvider
       .when('/', {
         templateUrl: 'scripts/relationships/relationships.html',

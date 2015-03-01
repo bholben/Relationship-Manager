@@ -18,37 +18,70 @@ li.relationship {
     cursor: pointer;
   }
   &.active {
-    background-color: $cGrayA;
+    background-color: $cGrayEC;
   }
   &:first-child {
     height: 85px;
     margin-top: -15px;
     padding-top: 15px;
+    border-top: 1px solid $cGrayEC;
   }
   &:last-child {
     height: 85px;
   }
-  .avatar {
-    float: left;
-    img {
-      width: 60px;
-      margin-right: 10px;
+}
+
+.avatar {
+  float: left;
+  img {
+    width: 60px;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+}
+.info {
+  float: left;
+  position: relative;
+  height: 60px;
+  .name {
+    font-size: 24px;
+  }
+  .details {
+    position: absolute;
+    bottom: 0;
+    .company, .title {
+      color: $cGrayA;
     }
   }
-  .info {
-    float: left;
-    position: relative;
-    width: calc(100% - 70px);
-    height: 60px;
-    .name {
-      font-size: 24px;
-    }
-    .bottom {
-      position: absolute;
-      bottom: 0;
-      .company, .title {
-        color: $cGrayA;
-      }
+}
+
+header.list {
+  height: 45px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  i {
+    float: right;
+    line-height: 35px;
+    color: $cGray7;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+form.relationship header {
+  margin: 0 -15px 10px;
+  padding: 0 15px;
+  border-bottom: 1px solid $cGrayEC;
+  color: $cGray7;
+  &.new {
+    height: 45px;
+    font-size: 24px;
+    padding-bottom: 10px;
+  }
+  &.existing {
+    height: 100px;
+    .avatar img {
+      width: 85px;
     }
   }
 }
@@ -58,7 +91,7 @@ li.relationship {
 }
 
 .rel-types {
-  margin: 0 auto;
+  margin: 10px auto 30px;
   overflow: hidden;
   .rel-type-col {
     float: left;
@@ -70,5 +103,5 @@ li.relationship {
 }
 
 .buttons {
-  padding: 10px 15px;
+  margin: 10px 15px;
 }

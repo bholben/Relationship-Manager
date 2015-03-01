@@ -4,24 +4,33 @@
 
   <div class="view-frame-left">
     <div class="view-content">
+
+      <header class="list">
+        <i ng-click="add()" class="fa fa-fw fa-plus"></i>
+      </header>
+
       <ul>
-        <li ng-repeat="r in relationships" ng-click="select(r, $index)" ng-class="{active: $index === selectedIndex}" class="relationship">
+        <li ng-repeat="rel in relationships" ng-click="select(rel, $index)" ng-class="{active: $index === selectedIndex}" class="relationship">
 
           <div class="avatar">
-            <img ng-src="{{ r.logo || r.gravatarURL }}">
+            <img ng-src="{{ rel.logo || rel.gravatarURL }}">
           </div>
 
           <div class="info">
-            <div class="name">{{ r.bizName || r.fname + ' ' + r.lname }}</div>
-            <div class="bottom">
-              <div class="company">{{ r.company }}</div>
-              <div class="title">{{ r.title }}</div>
+            <div class="name">{{ rel.name }}</div>
+            <div class="details">
+              <div class="company">{{ rel.company }}</div>
+              <div class="title">{{ rel.title }}</div>
             </div>
           </div>
 
         </li>
       </ul>
-      <div class="total">Total relationships: {{ relationships.length }}</div>
+
+      <footer class="total">
+        Total relationships: {{ relationships.length }}
+      </footer>
+
     </div>
   </div>
 
@@ -29,27 +38,38 @@
   <div class="view-frame-right">
     <div ng-cloak="ng-cloak" class="view-content">
 
-      <form ng-submit="create(relationship)">
+      <form ng-submit="create(relationship)" class="relationship">
 
+        <header ng-show="new" class="new">
+          Create New Relationship
+        </header>
 
-      <div class="row org-indiv">
-          <div class="btn-group btn-group-justified" data-toggle="buttons">
-            <label class="btn btn-primary">
-              <input ng-click="orgClicked(true)" type="radio"> Organization
-            </label>
-            <label class="btn btn-primary">
-              <input ng-click="orgClicked(false)" type="radio"> Individual
-            </label>
+        <header ng-hide="new" class="existing">
+          <div class="avatar">
+            <img ng-src="{{ relationship.logo || relationship.gravatarURL }}">
           </div>
-      </div>
 
+          <div class="info">
+            <div class="name">{{ relationship.name }}</div>
+            <div class="details">
+              <div class="updateAvatar"><a href="#">Change Avatar</a></div>
+            </div>
+          </div>
+        </header>
+
+        <div class="row org-indiv">
+            <div class="btn-group btn-group-justified" data-toggle="buttons">
+              <label class="btn btn-primary">
+                <input ng-click="orgClicked(true)" type="radio"> Organization
+              </label>
+              <label class="btn btn-primary">
+                <input ng-click="orgClicked(false)" type="radio"> Individual
+              </label>
+            </div>
+        </div>
 
         <div class="rel-types">
           <div class="rel-type-col">
-
-<!--         <div class="form-group core collapse" style="margin-bottom: 30px;">
-          <div class="col-xs-4 col-xs-offset-1"> -->
-
             <div class="radio">
               <label class="checkbox">
                 <checkbox ng-model="relationship.isCustomer"></checkbox>
@@ -92,9 +112,6 @@
           </div>
         </div>
 
-        <br>
-
-
         <div class="form-group organization">
           <label id="biz-name-label" for="entity-name" class="col-xs-3 control-label">Name*</label>
           <div class="col-xs-9">
@@ -114,7 +131,6 @@
             <p class="col-xs-9 col-xs-offset-3 help-block"></p>
           </div>
         </div>
-
 
         <div class="form-group individual">
           <div class="col-xs-3">
@@ -136,7 +152,6 @@
             <p class="col-xs-12 help-block"></p>
           </div>
         </div>
-
 
         <div>
           <div class="form-group">
@@ -178,17 +193,14 @@
           </div>
         </div>
 
-
-
         <div class="buttons">
           <div class="btn-group">
             <button ng-click="delete(relationship)" type="button" class="btn btn-danger">Delete</button>
           </div>
           <div class="btn-group pull-right">
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <input type="submit" class="btn btn-primary" value="{{ submitText() }}">
           </div>
         </div>
-
 
       </form>
 

@@ -1,8 +1,7 @@
 
-;(function() {
+;(function() { angular.module('app')
 
-  angular.module('app')
-
+  // Relationships factory.
   .factory('RelationshipsFactory', function ($http, $rootScope, PARSE) {
 
     var addGravatar = function (obj) {
@@ -23,11 +22,18 @@
       $rootScope.$broadcast('relationships:' + action, obj);
     };
 
+    var validateName = function(obj) {
+      if (obj.nickname || obj.fname && obj.lname) {
+        obj.name = obj.nickname || obj.fname + ' ' + obj.lname;
+        return obj;
+      }
+    };
+
     // AJAX POST request to ~/Relationships
     var createRelationship = function(obj) {
-      var data = addGravatar(obj);
-      $http.post(url(), data, config)
-        .success(function () { broadcast('created', data); });
+      obj = addGravatar(obj);
+      $http.post(url(), obj, config)
+        .success(function () { broadcast('created', obj); });
     };
 
     // AJAX GET request to ~/Relationships
@@ -51,9 +57,10 @@
 
     return {
       create: createRelationship,
-      retrieve: retrieveRelationships,
+      retrieveAll: retrieveRelationships,
       update: updateRelationship,
-      delete: deleteRelationship
+      delete: deleteRelationship,
+      validateName: validateName
     };
 
   });
