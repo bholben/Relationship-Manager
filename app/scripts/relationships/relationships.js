@@ -15,6 +15,7 @@
 
     $scope.create = function (r) {
       r.nickname = r.nickname || r.bizName;
+      if (!r.nickname) delete r.nickname;
       console.log(r);
       if (rf.validateName(r)) rf.create(r);
     };
@@ -43,6 +44,12 @@
 
     $scope.orgClicked = function (isOrg) {
       $scope.r.isOrg = isOrg;
+      if (isOrg) {
+        delete $scope.r.fname;
+        delete $scope.r.lname;
+      } else {
+        delete $scope.r.bizName;
+      }
     };
 
     $scope.resetForm = function() {
@@ -73,14 +80,6 @@
       // the list instead of fetching a new collection (faster).
       $scope.relationships.push(r);
       $scope.resetForm();
-
-      // TODO: Figure out how to pass the objectId into the rendered list
-      // so that deletes can happen on new objects (without triggering
-      // a reload/retrieveAll).
-      // Need to loop through $scope.relationships and find the matching
-      // relationship with same bizName or fname/lname and then
-      // add the objectId key.
-
     });
 
     $rootScope.$on('relationships:retrieved', function (event, r) {
@@ -97,8 +96,7 @@
       $scope.relationships = $scope.relationships.filter(function (rel) {
         return rel.objectId !== r.objectId;
       });
-      // Clear the form.
-      $scope.r = '';
+      $scope.resetForm();
     });
 
 

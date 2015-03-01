@@ -6,9 +6,10 @@
 
     var addGravatar = function (obj) {
       var url = 'http://www.gravatar.com/avatar/',
-          hash = CryptoJS.MD5(obj.email).toString(),
-          urlHash = url + hash;
-      obj.gravatarURL = urlHash + '?s=300&d=monsterid';
+          hash = CryptoJS.MD5(obj.email || obj.name).toString(),
+          size = 85, // pixel width
+          defaultImg = obj.isOrg ? 'identicon' : 'monsterid';
+      obj.gravatarURL = url + hash + '?s=' + size + '&d=' + defaultImg;
       return obj;
     };
 
@@ -28,7 +29,11 @@
       create: function(obj) {
         obj = addGravatar(obj);
         $http.post(url(), obj, config)
-          .success(function () { broadcast('created', obj); });
+          .success(function (res) {
+            // Include the objectId before attaching it to $rootScope.
+            obj.objectId = res.objectId;
+            broadcast('created', obj);
+          });
       },
 
       // AJAX GET request to ~/Relationships
