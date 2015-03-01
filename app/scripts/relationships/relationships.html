@@ -7,7 +7,7 @@
 
       <header class="list">
         <i ng-click="resetForm()" class="fa fa-fw fa-plus" tooltip="Create a new relationship"></i>
-        <i class="fa fa-fw fa-cloud-download" tooltip="Import existing relationships"></i>
+        <i class="fa fa-fw fa-cloud-download" tooltip="Import existing relationships (TODO)"></i>
       </header>
 
       <ul>
@@ -60,10 +60,10 @@
 
         <div class="row org-indiv">
             <div class="btn-group btn-group-justified" data-toggle="buttons">
-              <label ng-click="orgClicked(true)" class="btn btn-primary">
+              <label ng-click="orgClicked(true)" ng-class="{'active': r.isOrg}" class="btn btn-primary">
                 <input type="radio"> Organization
               </label>
-              <label ng-click="orgClicked(false)" class="btn btn-primary">
+              <label ng-click="orgClicked(false)" ng-class="{'active': !r.isOrg}" class="btn btn-primary">
                 <input type="radio"> Individual
               </label>
             </div>
@@ -100,7 +100,7 @@
             </div>
             <div class="radio">
               <label class="checkbox">
-                <checkbox ng-model="r.isBank"></checkbox>
+                <checkbox ng-model="r.isBank" disabled></checkbox>
                 &nbsp;&nbsp;Bank
               </label>
             </div>

@@ -58,7 +58,7 @@
       $scope.new = false;
       $scope.r = r;
       $scope.selectedIndex = index;
-      console.log(r);
+      // console.log(r);
     };
 
     var resetForm = function() {
@@ -69,14 +69,26 @@
     // Listeners
 
     $rootScope.$on('relationships:created', function (event, r) {
-      // To update the list view, I'm simply appending the new relationship to
+      // To update the list view, I'm appending the new relationship to
       // the list instead of fetching a new collection (faster).
       $scope.relationships.push(r);
       $scope.resetForm();
+
+      // TODO: Figure out how to pass the objectId into the rendered list
+      // so that deletes can happen on new objects (without triggering
+      // a reload/retrieveAll).
+      // Need to loop through $scope.relationships and find the matching
+      // relationship with same bizName or fname/lname and then
+      // add the objectId key.
+
     });
 
     $rootScope.$on('relationships:retrieved', function (event, r) {
       $scope.relationships = r;
+    });
+
+    $rootScope.$on('relationships:updated', function () {
+      $scope.resetForm();
     });
 
     $rootScope.$on('relationships:deleted', function (event, r) {
