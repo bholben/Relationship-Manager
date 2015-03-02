@@ -25,6 +25,8 @@
 
     return {
 
+      // TODO - Handle AJAX failures.
+
       // AJAX POST request to ~/Relationships
       create: function(obj) {
         obj = addGravatar(obj);

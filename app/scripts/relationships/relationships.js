@@ -17,17 +17,12 @@
       return $scope.new ? 'Create' : 'Update';
     };
 
-    $scope.orgClicked = function (isOrg) {
-      // Update the view
-      $scope.r.isOrg = isOrg;
-      // Eliminate meaningless names & avoid uniqueness conflicts.
-      if (isOrg) {
-        delete $scope.r.fname;
-        delete $scope.r.lname;
-      } else {
-        delete $scope.r.bizName;
-        delete $scope.r.nickname;
-      }
+    $scope.select = function (r, index) {
+      // Fill in the form.
+      $scope.new = false;
+      $scope.r = r;
+      // Highlight the active list item.
+      $scope.selectedIndex = index;
     };
 
     $scope.resetForm = function() {
@@ -39,12 +34,26 @@
       $scope.selectedIndex = -1;
     };
 
-    $scope.select = function (r, index) {
-      // Fill in the form.
-      $scope.new = false;
-      $scope.r = r;
-      // Highlight the active list item.
-      $scope.selectedIndex = index;
+    $scope.orgClicked = function (isOrg) {
+      // Update the view
+      $scope.r.isOrg = isOrg;
+      // Eliminate meaningless names & avoid uniqueness conflicts.
+      if (isOrg) {
+        delete $scope.r.fname;
+        delete $scope.r.lname;
+        $scope.r.isEmployee = false;
+      } else {
+        delete $scope.r.bizName;
+        delete $scope.r.nickname;
+        $scope.r.isBank = false;
+        $scope.r.isGovt = false;
+      }
+    };
+
+    $scope.toggleAddr = function(isAddr) {
+      // Update the view
+      $scope.r.isAddr = isAddr;
+      $scope.r.isContact = !isAddr;
     };
 
 
@@ -71,7 +80,7 @@
     // Listeners
 
     $rootScope.$on('relationships:created', function (event, r) {
-      // To update the list view, I'm appending the new relationship to
+      // To update the list view, I'm pushing the new relationship onto
       // the list instead of fetching a new collection (faster).
       $scope.relationships.push(r);
       $scope.resetForm();

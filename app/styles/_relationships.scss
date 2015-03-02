@@ -42,6 +42,7 @@ li.relationship {
 .info {
   float: left;
   position: relative;
+  width: calc(100% - 70px);
   height: 60px;
   .name {
     font-size: 24px;
@@ -87,11 +88,18 @@ form.relationship header {
     .avatar img {
       width: 85px;
     }
+    .info {
+      width: calc(100% - 95px);
+    }
   }
 }
 
-.org-indiv {
+.top-toggle {
   padding: 10px 30px;
+}
+
+.bottom-toggle {
+  margin: 10px 0 30px;
 }
 
 .rel-types {
@@ -104,6 +112,15 @@ form.relationship header {
       padding: 0;
     }
   }
+}
+
+.add-contact {
+  margin: 0 5px 10px 15px;
+  font-size: 0.9em;
+}
+
+.notes {
+  resize: vertical;
 }
 
 .buttons {

@@ -53,12 +53,12 @@
           <div class="info">
             <div class="name">{{ r.name }}</div>
             <div class="details">
-              <div class="updateAvatar"><a href="#">Change Avatar</a></div>
+              <div class="updateAvatar"><a href="#">Change photo</a></div>
             </div>
           </div>
         </header>
 
-        <div class="row org-indiv">
+        <div class="row top-toggle">
             <div class="btn-group btn-group-justified" data-toggle="buttons">
               <label ng-click="orgClicked(true)" ng-class="{'active': r.isOrg}" class="btn btn-primary">
                 <input type="radio"> Organization
@@ -85,7 +85,7 @@
             </div>
             <div class="radio">
               <label class="checkbox">
-                <checkbox ng-model="r.isEmployee"></checkbox>
+                <checkbox ng-model="r.isEmployee" ng-disabled="r.isOrg"></checkbox>
                 &nbsp;&nbsp;Employee
               </label>
             </div>
@@ -100,57 +100,99 @@
             </div>
             <div class="radio">
               <label class="checkbox">
-                <checkbox ng-model="r.isBank" disabled></checkbox>
+                <checkbox ng-model="r.isBank" ng-disabled="!r.isOrg"></checkbox>
                 &nbsp;&nbsp;Bank
               </label>
             </div>
             <div class="radio">
               <label class="checkbox">
-                <checkbox ng-model="r.isGovt"></checkbox>
+                <checkbox ng-model="r.isGovt" ng-disabled="!r.isOrg"></checkbox>
                 &nbsp;&nbsp;Taxing Authority
               </label>
             </div>
           </div>
         </div>
 
-        <div ng-show="r.isOrg">
-          <div class="form-group organization">
-            <label id="biz-name-label" for="entity-name" class="col-xs-3 control-label">Name*</label>
-            <div class="col-xs-9">
-              <input ng-model="r.bizName" type="text" class="form-control" placeholder="Business/organization name" autofocus>
-            </div>
-            <div class="error-text">
-              <p class="col-xs-9 col-xs-offset-3 help-block"></p>
-            </div>
+        <div ng-show="r.isOrg" class="form-group">
+          <label for="entity-name" class="col-xs-3 control-label">Name*</label>
+          <div class="col-xs-9">
+            <input ng-model="r.bizName" type="text" class="form-control" placeholder="Business/organization name" autofocus>
           </div>
-
-          <div class="form-group organization">
-            <label for="nickname" class="col-xs-3 control-label">Nickame</label>
-            <div class="col-xs-9">
-              <input ng-model="r.nickname" type="text" class="form-control" name="nickname">
-            </div>
-            <div class="error-text">
-              <p class="col-xs-9 col-xs-offset-3 help-block"></p>
-            </div>
+          <div class="error-text">
+            <p class="col-xs-9 col-xs-offset-3 help-block"></p>
           </div>
         </div>
 
-        <div ng-hide="r.isOrg">
-          <div class="form-group individual">
+        <div ng-show="r.isOrg" class="form-group">
+          <label for="nickname" class="col-xs-3 control-label">Nickame</label>
+          <div class="col-xs-9">
+            <input ng-model="r.nickname" type="text" class="form-control">
+          </div>
+          <div class="error-text">
+            <p class="col-xs-9 col-xs-offset-3 help-block"></p>
+          </div>
+        </div>
+
+        <div ng-hide="r.isOrg" class="form-group">
+          <div class="col-xs-3">
+            <select ng-model="r.salutation" class="form-control">
+              <option value=""></option>
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="miss">Ms.</option>
+              <option value="dr">Dr.</option>
+            </select>
+          </div>
+          <div class="col-xs-4">
+            <input ng-model="r.fname" type="text" class="form-control" placeholder="First name*">
+          </div>
+          <div class="col-xs-5">
+            <input ng-model="r.lname" type="text" class="form-control" placeholder="Last name*">
+          </div>
+          <div class="error-text">
+            <p class="col-xs-12 help-block"></p>
+          </div>
+        </div>
+
+        <div class="col-xs-12 bottom-toggle">
+          <div class="btn-group btn-group-justified" data-toggle="buttons">
+            <label ng-click="toggleAddr(true)" class="btn btn-default">
+              <input type="radio"> Address
+            </label>
+            <label ng-click="toggleAddr(false)" class="btn btn-default">
+              <input type="radio"> Contact Info
+            </label>
+          </div>
+        </div>
+
+
+        <div ng-show="r.isAddr" class="address">
+          <div class="form-group">
+            <div class="col-xs-12">
+              <textarea class="form-control" rows=2 maxlength=200 placeholder="Address"></textarea>
+            </div>
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-9">
+              <input type="text" class="form-control" placeholder="City">
+            </div>
             <div class="col-xs-3">
-              <select ng-model="r.salutation" class="form-control">
-                <option value=""></option>
-                <option value="mr">Mr.</option>
-                <option value="mrs">Mrs.</option>
-                <option value="miss">Ms.</option>
-                <option value="dr">Dr.</option>
+              <select class="form-control">
+                <option value="init">State</option>
               </select>
             </div>
-            <div class="col-xs-4">
-              <input ng-model="r.fname" type="text" class="form-control" placeholder="First name*">
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
             </div>
-            <div class="col-xs-5">
-              <input ng-model="r.lname" type="text" class="form-control" placeholder="Last name*">
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-offset-7 col-xs-5">
+              <input type="text" class="form-control" placeholder="Zip code">
             </div>
             <div class="error-text">
               <p class="col-xs-12 help-block"></p>
@@ -158,19 +200,60 @@
           </div>
 
           <div class="form-group">
-            <div class="col-xs-12">
-              <input ng-model="r.title" type="text" class="form-control" placeholder="Job title or functional area">
-            </div>
-            <div class="error-text">
-              <p class="col-xs-12 help-block"></p>
-            </div>
+            <div class="col-xs-3"><small>Add website</small></div>
           </div>
         </div>
 
-        <div class="form-group">
+
+
+
+
+
+        <div ng-show="r.isContact">
+
+          <div ng-show="r.isOrg">
+            <div class="row">
+              <div class="form-group">
+                <div class="col-xs-5"><i class="fa fa-fw fa-plus add-contact"></i>Add contact</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-3">
+                <select ng-model="r.salutation1" class="form-control">
+                  <option value=""></option>
+                  <option value="mr">Mr.</option>
+                  <option value="mrs">Mrs.</option>
+                  <option value="miss">Ms.</option>
+                  <option value="dr">Dr.</option>
+                </select>
+              </div>
+              <div class="col-xs-4">
+                <input ng-model="r.fname1" type="text" class="form-control" placeholder="First name*">
+              </div>
+              <div class="col-xs-5">
+                <input ng-model="r.lname1" type="text" class="form-control" placeholder="Last name*">
+              </div>
+              <div class="error-text">
+                <p class="col-xs-12 help-block"></p>
+              </div>
+            </div>
+          </div>
+
+
+
           <div class="form-group">
             <div class="col-xs-12">
-              <input ng-model="r.email" type="text" class="form-control" placeholder="Email">
+              <input ng-model="r.title1" type="text" class="form-control" placeholder="Job title or functional area">
+            </div>
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input ng-model="r.email1" type="text" class="form-control" placeholder="Email">
             </div>
             <div class="error-text">
               <p class="col-xs-12 help-block"></p>
@@ -178,7 +261,7 @@
           </div>
 
           <div class="col-xs-4">
-            <select ng-model="r.phone_prefix1" class="form-control">
+            <select ng-model="r.phone_prefix1_1" class="form-control">
               <option value="main">Main</option>
               <option value="direct" selected>Direct</option>
               <option value="mobile">Mobile</option>
@@ -187,15 +270,63 @@
             </select>
           </div>
           <div class="col-xs-5">
-            <input ng-model="r.phone_no1" type="text" class="form-control">
+            <input ng-model="r.phone_no1_1" type="text" class="form-control">
           </div>
           <div class="col-xs-3">
-            <input ng-model="r.phone_ext1" type="text" class="form-control" placeholder="ext.">
+            <input ng-model="r.phone_ext1_1" type="text" class="form-control" placeholder="ext.">
           </div>
           <div class="error-text">
             <p class="col-xs-12 help-block"></p>
           </div>
+
+          <div class="col-xs-4">
+            <select ng-model="r.phone_prefix1_2" class="form-control">
+              <option value="main">Main</option>
+              <option value="direct" selected>Direct</option>
+              <option value="mobile">Mobile</option>
+              <option value="fax">Fax</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="col-xs-5">
+            <input ng-model="r.phone_no1_2" type="text" class="form-control">
+          </div>
+          <div class="col-xs-3">
+            <input ng-model="r.phone_ext1_2" type="text" class="form-control" placeholder="ext.">
+          </div>
+          <div class="error-text">
+            <p class="col-xs-12 help-block"></p>
+          </div>
+
+          <div class="col-xs-4">
+            <select ng-model="r.phone_prefix1_3" class="form-control">
+              <option value="main">Main</option>
+              <option value="direct" selected>Direct</option>
+              <option value="mobile">Mobile</option>
+              <option value="fax">Fax</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="col-xs-5">
+            <input ng-model="r.phone_no1_3" type="text" class="form-control">
+          </div>
+          <div class="col-xs-3">
+            <input ng-model="r.phone_ext1_3" type="text" class="form-control" placeholder="ext.">
+          </div>
+          <div class="error-text">
+            <p class="col-xs-12 help-block"></p>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-12">
+              <textarea ng-model="r.notes_1" class="form-control notes" rows=2 maxlength=500 placeholder="Notes"></textarea>
+            </div>
+            <div class="error-text">
+              <p class="col-xs-12 help-block"></p>
+            </div>
+          </div>
         </div>
+
 
         <div class="buttons">
           <div class="btn-group">
