@@ -1,5 +1,8 @@
 
-;(function() { angular.module('app')
+;(function() {
+  'use strict';
+
+  angular.module('app')
 
   // Relationships controller.
   .controller('Relationships', function($scope, $rootScope, RelationshipsFactory) {
@@ -21,6 +24,9 @@
       // Fill in the form.
       $scope.new = false;
       $scope.r = r;
+      // Initialize with bottom of form hidden.
+      $scope.isAddr = false;
+      $scope.isContact = false;
       // Highlight the active list item.
       $scope.selectedIndex = index;
     };
@@ -52,8 +58,8 @@
 
     $scope.toggleAddr = function(isAddr) {
       // Update the view
-      $scope.r.isAddr = isAddr;
-      $scope.r.isContact = !isAddr;
+      $scope.isAddr = isAddr;
+      $scope.isContact = !isAddr;
     };
 
 
@@ -97,6 +103,8 @@
     $rootScope.$on('relationships:deleted', function (event, r) {
       // To update the list view, I'm mutating the local list instead
       // of fetching a new collection (faster).
+
+      // TODO - Update this to use $index and splice instead of filter looping.
       $scope.relationships = $scope.relationships.filter(function (rel) {
         return rel.objectId !== r.objectId;
       });

@@ -19,17 +19,33 @@
   </head>
   <body>
 
-    <header class="topbar"><i class="fa fa-bars"></i><i class="fa fa-user">&nbsp;&nbsp;&nbsp;</i>
-      <nav class="user">
-        <ul class="user-menu">
-          <li>Profile</li>
-          <li>Settings</li>
-          <li>Logout</li>
-        </ul>
-      </nav>
+    <header class="topbar">
+
+      <i class="fa fa-bars"></i>
+
+      <div ng-controller="NavCtrl">
+        <form ng-hide="signedIn" ng-submit="signIn(user)" class="anonymous">
+          <input ng-model="user.username" type="text" class="form-control" placeholder="Email or username">
+          <input ng-model="user.password" type="password" class="form-control" placeholder="Password">
+          <input type="submit" class="btn btn-primary" value="Sign in">
+        </form>
+
+        <div ng-show="signedIn">
+          <i class="fa fa-user"></i>
+          <nav class="user">
+            <ul class="user-menu">
+              <li>Profile</li>
+              <li>Settings</li>
+              <li ng-click="signOut()">Sign out</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
       <div class="title">
         <div>Setup</div>
       </div>
+
     </header>
 
     <div class="header-spacer"></div>
@@ -80,13 +96,10 @@
     </nav>
 
 
-
     <!-- <div class="page-wrapper" ng-view> -->
 
     <section ng-view class="body">Loading...</section>
 
-
-    </div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -95,6 +108,7 @@
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
     <script src="../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -104,6 +118,9 @@
     <!-- build:js scripts/main.js -->
     <script src="scripts/ui.tooltip/ui-bootstrap-custom-0.12.1.min.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/layout/nav.js"></script>
+    <script src="scripts/users/users.js"></script>
+    <script src="scripts/users/users.factory.js"></script>
     <script src="scripts/relationships/relationships.js"></script>
     <script src="scripts/relationships/relationships.factory.js"></script>
     <!-- endbuild -->

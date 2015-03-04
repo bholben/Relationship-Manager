@@ -1,11 +1,13 @@
 
 ;(function () {
+  'use strict';
 
   angular.module('app', [
     // App dependencies.
     'ngRoute',      // $routeProvider for page navigation
+    'ngCookies',    // $cookieStore for user auth
     'ui.bootstrap', // tooltip
-    'ui.checkbox',  // Visual improvement over default HTML checkboxes (dragged along bootstrap)
+    'ui.checkbox',  // Visual improvement over default HTML checkboxes (bootstrap dependency)
   ])
 
   // These Parse headers are tacked onto all AJAX requests.
@@ -19,27 +21,34 @@
       }
     }
   })
+  .constant('PATH', {
+    SIGNIN: '/'
+  })
 
   // Router configuration.
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'scripts/relationships/relationships.html',
-        controller: 'Relationships'
+      .when('/signup', {
+        templateUrl: 'scripts/users/user.signup.html',
+        controller: 'Users'
       })
-
       .when('/relationships', {
-        templateUrl: 'scripts/relationships/relationships.html',
+        templateUrl: 'scripts/relationships/relationship.manager.html',
         controller: 'Relationships'
       })
-
-      .when('/fonts', {
-        templateUrl: 'scripts/fonts/fonts.html',
-        controller: 'Fonts'
+      .when('/icons', {
+        templateUrl: 'scripts/icons/icons.html'
+        // controller: 'Icons'
       })
+      .otherwise('/relationships');
+  })
 
-      .otherwise('/');
-
+  .run(function ($rootScope, $location, UsersFactory, PARSE) {
+    $rootScope.$on('$routeChangeStart', function () {
+      // Every time a route change is requested, add the
+      // token to the PARSE.CONFIG.headers if it exists.
+      if (!UsersFactory.tokenizeHeader()) $location.path('/signup');
+    });
   });
 
 }());

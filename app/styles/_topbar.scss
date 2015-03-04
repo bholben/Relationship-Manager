@@ -37,10 +37,28 @@ header.topbar {
   }
   // User menu toggle icon (avatar icon)
   i.fa-user {
+    // display: none;
     float: right;
-    width: 100px;
+    margin-right: 23px;
     text-align: right;
     font-size: 30px;
+  }
+  .anonymous {
+    float: right;
+    margin: 8px 15px;
+    .form-control {
+      display: inline;
+      width: 200px;
+      height: 25px;
+      &[type="password"] {
+        width: 90px;
+      }
+    }
+    .btn {
+      height: 25px;
+      padding: 0 12px;
+      background-color: $cGray3;
+    }
   }
   // User menu wrapper
   nav.user {
@@ -54,7 +72,7 @@ header.topbar {
     background-color: white;
     box-shadow: $dropShadow;
     ul.user-menu {
-      display: none;
+      // display: none;
       overflow: auto;
       li {
         height: $menuUserButtonHeight;
