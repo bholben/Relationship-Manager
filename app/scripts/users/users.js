@@ -15,7 +15,7 @@
         delete user.cPassword;
         UsersFactory.signup(user);
       } else {
-        $scope.error = 'Passwords don\'t match.  Please try again.'
+        $scope.error = 'Passwords don\'t match.  Please try again.';
         $scope.user.password = '';
         $scope.user.cPassword = '';
         $('#password').focus();

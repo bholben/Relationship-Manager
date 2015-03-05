@@ -6,6 +6,8 @@
 
   .controller('NavCtrl', function ($scope, $rootScope, UsersFactory) {
 
+    $scope.showUserMenu = false;
+
     var updateAuthMenuState = function () {
       // $scope.user = UsersFactory.getCookie();
       // $scope.signedIn = ($scope.user) ? true : false;
@@ -19,8 +21,12 @@
       }
     };
 
+    $scope.toggleUserMenu = function () {
+      $scope.showUserMenu = !$scope.showUserMenu;
+    };
+
     $scope.signIn = function (user) {
-      UsersFactory.signin(user)
+      UsersFactory.signin(user);
     };
 
     $scope.signOut = function() {

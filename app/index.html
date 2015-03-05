@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-    <title>CRM</title>
+    <title>Relationship Manager</title>
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -43,9 +43,9 @@
         </form>
 
         <div ng-show="signedIn">
-          <i class="fa fa-user"></i>
+          <i ng-click="toggleUserMenu()" class="fa fa-user"></i>
           <nav class="user">
-            <ul class="user-menu">
+            <ul ng-show="showUserMenu" class="user-menu">
               <li>Profile</li>
               <li>Settings</li>
               <li ng-click="signOut()">Sign out</li>

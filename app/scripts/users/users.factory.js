@@ -35,7 +35,7 @@
           })
           .error(function (res) {
             broadcast('signupError', res.error);
-          })
+          });
       },
 
       signin: function (userObj) {
