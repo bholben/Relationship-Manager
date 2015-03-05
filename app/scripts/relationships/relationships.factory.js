@@ -7,15 +7,6 @@
   // Relationships factory.
   .factory('RelationshipsFactory', function ($http, $rootScope, PARSE) {
 
-    var addGravatar = function (obj) {
-      var url = 'http://www.gravatar.com/avatar/',
-          hash = CryptoJS.MD5(obj.email || obj.name).toString(),
-          size = 85, // pixel width
-          defaultImg = obj.isOrg ? 'identicon' : 'monsterid';
-      obj.gravatarURL = url + hash + '?s=' + size + '&d=' + defaultImg;
-      return obj;
-    };
-
     var url = function(id) {
       return PARSE.URL + 'classes/Relationships/' + (id || '');
     };
@@ -28,11 +19,21 @@
 
     return {
 
+      addGravatar: function (obj) {
+        var gravURL = 'http://www.gravatar.com/avatar/',
+            hash = CryptoJS.MD5(obj.email || obj.name).toString(),
+            size = 85, // pixel width
+            defaultImg = obj.isOrg ? 'identicon' : 'monsterid';
+        obj.gravatarURL = gravURL + hash + '?s=' + size + '&d=' + defaultImg;
+        return obj;
+      },
+
+
       // TODO - Handle AJAX failures.
 
       // AJAX POST request to ~/Relationships
       create: function(obj) {
-        obj = addGravatar(obj);
+        obj = this.addGravatar(obj);
         $http.post(url(), obj, config)
           .success(function (res) {
             // Include the objectId before attaching it to $rootScope.
@@ -49,7 +50,7 @@
 
       // AJAX PUT request to ~/Relationships/:objectId
       update: function(obj) {
-        var data = (obj.email) ? addGravatar(obj) : obj;
+        var data = (obj.email) ? this.addGravatar(obj) : obj;
         $http.put(url(obj.objectId), data, config)
           .success(function () { broadcast('updated'); });
       },

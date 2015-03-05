@@ -12,7 +12,6 @@
     $scope.signup = function (user) {
 
       if (user.password === user.cPassword) {
-        delete user.cPassword;
         UsersFactory.signup(user);
       } else {
         $scope.error = 'Passwords don\'t match.  Please try again.';

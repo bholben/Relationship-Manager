@@ -29,19 +29,13 @@ header.topbar {
     width: 100px;
     padding-left: $sidePadding;
   }
-  // Title
-  div.title {
-    width: 150px;
-    margin: 0 auto;
-    text-align: center;
-  }
   // User menu toggle icon (avatar icon)
-  i.fa-user {
-    // display: none;
+  img.avatar {
     float: right;
-    margin-right: 23px;
+    width: 30px;
+    margin: 12px 19px;
     text-align: right;
-    font-size: 30px;
+    border-radius: 3px;
   }
   .signin {
     float: right;
@@ -55,12 +49,21 @@ header.topbar {
         &[type="password"] { width: 115px; }
       }
       small, small a {
-        color: $cGray3;
+        color: black;
+      }
+      label {
+        font-weight: inherit;
+        input[type="checkbox"] {
+          margin-right: 5px;
+        }
       }
       .btn {
         height: 25px;
         padding: 0 12px;
-        background-color: $cGray3;
+        background-color: $cBase1Darker;
+        &:hover {
+          background-color: $cBase1Darkest;
+        }
       }
     }
   }
@@ -76,10 +79,10 @@ header.topbar {
     background-color: white;
     box-shadow: $dropShadow;
     ul.user-menu {
-      // display: none;
       overflow: auto;
       li {
         height: $menuUserButtonHeight;
+        margin: 0;
         padding-left: $sidePadding;
         border-bottom: 1px solid $cGrayC;
         font-size: 15px;
@@ -87,17 +90,33 @@ header.topbar {
         &:hover {
           background-color: $cGrayT;
         }
+        &.username {
+          height: 0.75 * $menuUserButtonHeight;
+          line-height: 0.75 * $menuUserButtonHeight;
+          padding-left: 15px;
+          font-size: 13px;
+          color: $cGray9;
+          &:hover {
+            background-color: inherit;
+          }
+        }
       }
       &:after {
         position: absolute;
         top: -8px;
         right: 10px;
-        border-bottom: 8px solid #eee;
+        border-bottom: 8px solid white;
         border-right: 8px solid transparent;
         border-left: 8px solid transparent;
         content: '';
       }
     }
+  }
+  // Title
+  div.title {
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 

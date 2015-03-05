@@ -13,9 +13,9 @@
     <p class="tagline1">Join existing companies for free.</p>
     <p class="tagline2">Create new companies <a href="#/">affordably.</a></p>
     <form ng-submit="signup(user)">
-      <input ng-model="user.username" class="form-control" type="email" placeholder="Email">
-      <input ng-model="user.password" id="password" class="form-control" type="password" placeholder="Password">
-      <input ng-model="user.cPassword" class="form-control" type="password" placeholder="Confirm Password">
+      <input ng-model="user.username" class="form-control" type="email" placeholder="Email" tabindex="3">
+      <input ng-model="user.password" id="password" class="form-control" type="password" placeholder="Password" tabindex="4">
+      <input ng-model="user.cPassword" class="form-control" type="password" placeholder="Confirm Password" tabindex="5">
       <button class="btn btn-primary">Sign Up</button>
     </form>
     <p class="text-danger error-msg">{{ error }}</p>

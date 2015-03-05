@@ -19,20 +19,20 @@
   </head>
   <body>
 
-    <header class="topbar">
+    <header ng-controller="TopBar" class="topbar">
 
       <i class="fa fa-bars"></i>
 
-      <div ng-controller="NavCtrl">
+      <div ng-cloak>
         <form ng-hide="signedIn" ng-submit="signIn(user)" class="signin">
 
           <div>
-            <input ng-model="user.username" type="text" class="form-control" placeholder="Email or username">
-            <small><input type="checkbox" checked>Keep me signed in</small>
+            <input ng-model="user.username" type="text" class="form-control" placeholder="Email or username" tabindex="1">
+            <small><label><input type="checkbox" checked>Keep me signed in</label></small>
           </div>
 
           <div>
-            <input ng-model="user.password" type="password" class="form-control" placeholder="Password">
+            <input ng-model="user.password" type="password" class="form-control" placeholder="Password" tabindex="2">
             <small><a href="#/">Forgot your password?</a></small>
           </div>
 
@@ -43,9 +43,10 @@
         </form>
 
         <div ng-show="signedIn">
-          <i ng-click="toggleUserMenu()" class="fa fa-user"></i>
+          <img ng-click="toggleUserMenu()" ng-src="{{ user.gravatarURL }}" class="avatar">
           <nav class="user">
             <ul ng-show="showUserMenu" class="user-menu">
+              <li class="username">{{ user.nicename || user.username }}</li>
               <li>Profile</li>
               <li>Settings</li>
               <li ng-click="signOut()">Sign out</li>
@@ -55,7 +56,7 @@
       </div>
 
       <div class="title">
-        <div>Setup</div>
+        <!-- <div>Setup</div> -->
       </div>
 
     </header>

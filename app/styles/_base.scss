@@ -34,3 +34,11 @@ a {
   display: none !important;
 }
 
+.btn-primary {
+  background-color: $cBase1Darker;
+  border: none;
+  &:hover {
+    background-color: $cBase1Darkest;
+    border: none;
+  }
+}

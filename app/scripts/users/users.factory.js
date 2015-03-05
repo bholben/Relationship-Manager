@@ -4,7 +4,7 @@
 
   angular.module('app')
 
-  .factory('UsersFactory', function ($http, $rootScope, $cookieStore, $location, PARSE, PATHS) {
+  .factory('UsersFactory', function ($http, $rootScope, $cookieStore, $location, PARSE, PATHS, RelationshipsFactory) {
 
     var broadcast = function(action, obj) {
       $rootScope.$broadcast('userAuth:' + action, obj);
@@ -27,11 +27,15 @@
 
       signup: function (userObj) {
         var self = this;
+        delete userObj.cPassword;
+        userObj.email = userObj.username;
+        userObj = RelationshipsFactory.addGravatar(userObj);
+        console.log(userObj);
         $http.post(PARSE.URL + 'users', userObj, PARSE.CONFIG)
           .success(function (res) {
-            // console.log(res);
-            self.setCookie(res);
+            self.setCookie(_.extend(userObj, res));
             $location.path(PATHS.HOME);
+            broadcast('signup');
           })
           .error(function (res) {
             broadcast('signupError', res.error);
