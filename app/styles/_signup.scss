@@ -1,6 +1,7 @@
 
 .signup {
   width: 700px;
+  overflow: hidden;
   margin: 40px auto 20px;
   .image-gallery {
     float: left;
@@ -12,11 +13,21 @@
   .signup-form {
     float: left;
     margin-left: 60px;
-    p {
+    .tagline1 {
+      margin-bottom: 2px;
+    }
+    .tagline2 {
       margin-bottom: 25px;
     }
-    input {
-      margin-bottom: 15px;
+    form {
+      margin-bottom: 10px;
+      input {
+        width: 300px;
+        margin-bottom: 10px;
+      }
+    }
+    .error-msg {
+      margin-bottom: 3px;
     }
   }
 }

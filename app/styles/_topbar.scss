@@ -43,21 +43,25 @@ header.topbar {
     text-align: right;
     font-size: 30px;
   }
-  .anonymous {
+  .signin {
     float: right;
     margin: 8px 15px;
-    .form-control {
-      display: inline;
-      width: 200px;
-      height: 25px;
-      &[type="password"] {
-        width: 90px;
+    div {
+      float: left;
+      margin-left: 5px;
+      .form-control {
+        height: 25px;
+        &[type="text"] { width: 200px; }
+        &[type="password"] { width: 115px; }
       }
-    }
-    .btn {
-      height: 25px;
-      padding: 0 12px;
-      background-color: $cGray3;
+      small, small a {
+        color: $cGray3;
+      }
+      .btn {
+        height: 25px;
+        padding: 0 12px;
+        background-color: $cGray3;
+      }
     }
   }
   // User menu wrapper

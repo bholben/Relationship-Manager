@@ -21,12 +21,17 @@
       }
     }
   })
-  .constant('PATH', {
-    SIGNIN: '/'
+
+  .constant('PATHS', {
+    HOME: '/',
+    SECURE: ['/accounts', '/relationships', '/transactions']
   })
 
-  // Router configuration.
+  // App configuration
   .config(function ($routeProvider) {
+
+    // Router
+
     $routeProvider
       .when('/signup', {
         templateUrl: 'scripts/users/user.signup.html',
@@ -36,18 +41,32 @@
         templateUrl: 'scripts/relationships/relationship.manager.html',
         controller: 'Relationships'
       })
-      .when('/icons', {
-        templateUrl: 'scripts/icons/icons.html'
-        // controller: 'Icons'
-      })
+      // .when('/icons', {
+      //   templateUrl: 'scripts/icons/icons.html'
+      //   // controller: 'Icons'
+      // })
       .otherwise('/relationships');
   })
 
-  .run(function ($rootScope, $location, UsersFactory, PARSE) {
+  // Run once at setup
+  .run(function ($rootScope, $location, UsersFactory, PATHS) {
+
+    // Listeners
+
     $rootScope.$on('$routeChangeStart', function () {
+
       // Every time a route change is requested, add the
       // token to the PARSE.CONFIG.headers if it exists.
-      if (!UsersFactory.tokenizeHeader()) $location.path('/signup');
+      var currentPath = $location.path(),
+          secureRoute = _.contains(PATHS.SECURE, currentPath),
+          signedIn = UsersFactory.tokenizeHeader();
+
+      console.log('Route request: ', $location.path());
+      console.log('Signed in: ', Boolean(signedIn));
+
+      // Only allow a route change if the user is signed in.
+      if (secureRoute && !signedIn) $location.path('/signup');
+
     });
   });
 

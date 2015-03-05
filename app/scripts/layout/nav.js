@@ -4,25 +4,34 @@
 
   angular.module('app')
 
-  .controller('NavCtrl', function ($scope, UsersFactory) {
+  .controller('NavCtrl', function ($scope, $rootScope, UsersFactory) {
 
-    var user = UsersFactory.getCookie();
+    var updateAuthMenuState = function () {
+      // $scope.user = UsersFactory.getCookie();
+      // $scope.signedIn = ($scope.user) ? true : false;
 
-    if (user) {
-      $scope.signedIn = true;
-      $scope.user = user;
-    } else {
-      $scope.signedIn = false;
-    }
+      var user = UsersFactory.getCookie();
+      if (user) {
+        $scope.signedIn = true;
+        $scope.user = user;
+      } else {
+        $scope.signedIn = false;
+      }
+    };
 
     $scope.signIn = function (user) {
-      console.log(user);
-      // UsersFactory.signin(user);
+      UsersFactory.signin(user)
     };
 
     $scope.signOut = function() {
       UsersFactory.signout();
+      updateAuthMenuState();
     };
+
+    // Listen for signin broadcast.
+    $rootScope.$on('userAuth:signin', function () { updateAuthMenuState(); });
+
+    updateAuthMenuState();
 
   });
 

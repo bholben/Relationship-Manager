@@ -24,10 +24,22 @@
       <i class="fa fa-bars"></i>
 
       <div ng-controller="NavCtrl">
-        <form ng-hide="signedIn" ng-submit="signIn(user)" class="anonymous">
-          <input ng-model="user.username" type="text" class="form-control" placeholder="Email or username">
-          <input ng-model="user.password" type="password" class="form-control" placeholder="Password">
-          <input type="submit" class="btn btn-primary" value="Sign in">
+        <form ng-hide="signedIn" ng-submit="signIn(user)" class="signin">
+
+          <div>
+            <input ng-model="user.username" type="text" class="form-control" placeholder="Email or username">
+            <small><input type="checkbox" checked>Keep me signed in</small>
+          </div>
+
+          <div>
+            <input ng-model="user.password" type="password" class="form-control" placeholder="Password">
+            <small><a href="#/">Forgot your password?</a></small>
+          </div>
+
+          <div>
+            <input type="submit" class="btn btn-primary" value="Sign in">
+          </div>
+
         </form>
 
         <div ng-show="signedIn">
