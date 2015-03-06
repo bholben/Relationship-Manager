@@ -1,5 +1,5 @@
 {
-  "name": "bholben-crm-module",
+  "name": "bholben-relationship-manager",
   "root": "dist",
   "clean_urls": true,
   "error_page": "error.html"

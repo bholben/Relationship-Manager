@@ -60,9 +60,9 @@ header.topbar {
       .btn {
         height: 25px;
         padding: 0 12px;
-        background-color: $cBase1Darker;
+        background-color: $cBase1Button;
         &:hover {
-          background-color: $cBase1Darkest;
+          background-color: $cBase1ButtonHover;
         }
       }
     }

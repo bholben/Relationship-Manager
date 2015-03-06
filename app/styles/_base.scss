@@ -6,7 +6,8 @@ body {
   line-height: inherit;
   letter-spacing: 0.3px;
   color: $cGray3;
-  background-color: $cGrayEC;
+  // background-color: $cGrayEC;
+  background-image: url('../images/green-xhatch.png');
 }
 
 *, *:before, *:after {
@@ -35,10 +36,15 @@ a {
 }
 
 .btn-primary {
-  background-color: $cBase1Darker;
+  background-color: $cBase1Button;
   border: none;
   &:hover {
-    background-color: $cBase1Darkest;
+    background-color: $cBase1ButtonHover;
+    border: none;
+  }
+  &:active, &.active, &:focus {
+    background-color: $cBase1ButtonActive;
     border: none;
   }
 }
+
